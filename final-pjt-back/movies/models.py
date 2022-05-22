@@ -14,5 +14,5 @@ class Movie(models.Model):
     release_date = models.CharField(max_length=100)
     popularity = models.FloatField()
     movie_id = models.IntegerField()
-    poster_url = models.URLField(max_length=1000)
+    poster_url = models.CharField(max_length=1000)
 
