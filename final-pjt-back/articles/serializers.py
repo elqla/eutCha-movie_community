@@ -23,7 +23,6 @@ class ArticleSerializer(serializers.ModelSerializer):
             model = User
             fields = ('pk', 'username', 'nickname',)
             
-    # queryset annotate (views에서 채워줄것!)
     user = UserSerializer(read_only=True)
     comments = CommentSerializer(read_only=True, many=True)
 
@@ -36,7 +35,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = User
-            fields = ('nickname',)
+            fields = ('pk', 'username', 'nickname',)
             
     # queryset annotate (views에서 채워줄것!)
     user = UserSerializer(read_only=True)
@@ -50,10 +49,10 @@ class CommunitySerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = User
-            fields = ('nickname',)
+            fields = ('pk', 'username', 'nickname',)
     user = UserSerializer(read_only=True)
     comment_count = serializers.IntegerField()
-    # watch_movie = User.watch_movie
+    # watch_movie = User.watch_movie    serializer
     class Meta:
         model = Article
-        exclude = ('updated_at',)
+        fields = ('pk', 'user', 'comment_count', 'title', 'created_at', 'movie',)

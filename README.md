@@ -15,3 +15,4 @@
 ![erd_moviecommunity](images/erd_moviecommunity.jpg) 
 
 - URL과 Views를 ERD로 표현해보았다.
+- articles/community

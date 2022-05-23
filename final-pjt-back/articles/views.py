@@ -1,5 +1,5 @@
 from django.shortcuts import get_list_or_404, get_object_or_404, render
-from .serializers import ArticleSerializer, CommentSerializer, ArticleListSerializer
+from .serializers import ArticleSerializer, CommentSerializer, ArticleListSerializer, CommunitySerializer
 from .models import Article, Comment
 from django.db.models import Count
 
@@ -10,13 +10,28 @@ from rest_framework.decorators import api_view
 from articles import serializers
 
 
-@api_view(['POST'])
-def article_create(request):
-    serializer = ArticleSerializer(data=request.data)
 
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(user=request.user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+@api_view(['GET', 'POST'])
+def article_list_or_create(request):
+    def article_list():
+        articles = Article.objects.order_by('-pk')
+        # articles = get_list_or_404(Article)[::-1]
+        serializer = ArticleListSerializer(articles, many=True)
+        return Response(serializer.data)
+
+    def article_create():
+        serializer = ArticleSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+    if request.method == 'GET':
+        return article_list()
+    elif request.method == 'POST':
+        return article_create()
+
+
 
 
 
@@ -60,10 +75,36 @@ def comment_create(request, article_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(['PUT', 'DELETE'])
+def comment_update_or_delete(request, article_pk, comment_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+
+    def comment_update():
+        if request.user == comment.user:
+            serializer = CommentSerializer(instance=comment, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                comments = article.comments.all()
+                serializer = CommentSerializer(comments, many=True)
+                return Response(serializer.data)
+    def comment_delete():
+        if request.user==comment.user:
+            comment.delete()
+            comments = article.comments.all()
+            serializer = CommentSerializer(comments, many=True)
+            return Response(serializer.data)
+
+    if request.method=='PUT':
+        comment_update()
+    elif request.method=='DELETE':
+        comment_delete()
+
+
 @api_view(['GET'])
-def article_list(request):
-    articles = Article.objects.order_by('-pk')
-    serializer = ArticleListSerializer(articles, many=True)
+def community(request):
+    community = Article.objects.annotate(
+            comment_count=Count('comments', distinct=True)
+        ).order_by('-pk')
+    serializer = CommunitySerializer(community, many=True)
     return Response(serializer.data)
-
-
