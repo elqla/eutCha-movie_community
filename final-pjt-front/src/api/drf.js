@@ -29,7 +29,7 @@ export default {
     moviePopular: () => HOST + MOVIES + 'popular/',
     movieRecent: () => HOST + MOVIES + 'recent/',
     newMovie: () => HOST + MOVIES + 'new/',
-    // movie: moviePk => HOST + MOVIES + `${moviePk}/`,
+    movie: moviePk => HOST + MOVIES + `${moviePk}/`,
     // movieLike: () => HOST + MOVIES + `${moviePk}/` + 'like/',
     // movieDislike: () => HOST + MOVIES + `${moviePk}/` + 'dislike/',
   },

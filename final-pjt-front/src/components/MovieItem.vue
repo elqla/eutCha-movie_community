@@ -10,10 +10,10 @@
     class="mb-2"
   >
       <b-card-text>
-        Some quick example text to build on the card title and make up the bulk of the card's content.
+        {{ movie.overview }}
       </b-card-text>
       <b-card-text>
-        {{ movie.id }}
+        ID : {{ movie.id }}
       </b-card-text>
       <router-link :to="{ name: 'movieDetail', params: { movieId } }">
         <b-button variant="primary">Go somewhere</b-button>
