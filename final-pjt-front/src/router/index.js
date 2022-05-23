@@ -5,6 +5,7 @@ import LoginView from '@/views/LoginView.vue'
 import LogoutView from '@/views/LogoutView.vue'
 import SignupView from '@/views/SignupView.vue'
 import NotFound404 from '@/views/NotFound404.vue'
+import MovieCategoryView from '@/views/MovieCategoryView.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupView
+  },
+  {
+    path: '/movies',
+    name: 'movies',
+    component: MovieCategoryView
   },
   // {
   //   path: 

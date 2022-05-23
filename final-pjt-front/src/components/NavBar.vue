@@ -1,6 +1,6 @@
 <template>
-  <div class="fixed-top">
-    <b-navbar type="dark" variant="info"
+  <div class="nav-bar fixed-top">
+    <b-navbar type="white"
       class="d-flex justify-content-between"
     >
       <b-navbar-brand href="#">eutCha</b-navbar-brand>
@@ -23,5 +23,7 @@ export default {
 </script>
 
 <style>
-
+  .nav-bar {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
 </style>
