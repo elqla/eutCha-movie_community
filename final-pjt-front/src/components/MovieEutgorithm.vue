@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="container">
     <h1>algorithm</h1>
-    <movie-item
-      v-for="movie in eutMovies"
-      :key="movie.id"
-      :movie="movie"
-    ></movie-item>
+    <div class="row">
+      <movie-item
+        v-for="movie in eutMovies"
+        :key="movie.id"
+        :movie="movie"
+      ></movie-item>
+    </div>
   </div>
 </template>
 
