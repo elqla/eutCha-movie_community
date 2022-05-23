@@ -7,6 +7,7 @@ import SignupView from '@/views/SignupView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import NotFound404 from '@/views/NotFound404.vue'
 import MovieCategoryView from '@/views/MovieCategoryView.vue'
+import MovieDetailView from '@/views/MovieDetailView.vue'
 import store from '@/store'
 Vue.use(VueRouter)
 
@@ -41,11 +42,11 @@ const routes = [
     name: 'profile',
     component: ProfileView
   },
-  // {
-  //   path: 
-  //   name: 
-  //   component: 
-  // },
+  {
+    path: '/movies/:movieId',
+    name: 'movieDetail',
+    component: MovieDetailView
+  },
   // {
   //   path: 
   //   name: 

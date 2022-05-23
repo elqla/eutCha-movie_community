@@ -9,12 +9,16 @@
     style="max-width: 20rem;"
     class="mb-2"
   >
-    <b-card-text>
-      Some quick example text to build on the card title and make up the bulk of the card's content.
-    </b-card-text>
-
-    <b-button href="#" variant="primary">Go somewhere</b-button>
-  </b-card>
+      <b-card-text>
+        {{ movie.overview }}
+      </b-card-text>
+      <b-card-text>
+        ID : {{ movie.id }}
+      </b-card-text>
+      <router-link :to="{ name: 'movieDetail', params: { movieId } }">
+        <b-button variant="primary">Go somewhere</b-button>
+      </router-link>
+    </b-card>
   </div>
 </template>
 
@@ -27,6 +31,9 @@ export default {
   computed: {
     poster() {
       return 'https://image.tmdb.org/t/p/w500' + this.movie.poster_url
+    },
+    movieId() {
+      return this.movie.id
     }
   }
 }
