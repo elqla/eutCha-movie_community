@@ -1,80 +1,81 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="signup"
-        label="Email address:"
-        label-for="input-1"
-        description="We'll never share your email with anyone else."
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.email"
-          type="email"
-          placeholder="Enter email"
-          required
-        ></b-form-input>
-      </b-form-group>
+    <b-card style="max-width: 20rem; margin-top:100px;" 
+        class="container justify-content-center"
+        border-variant="grey"
+        bg-variant="light"
+        >
+    <h1>signup</h1>
+    <account-error-list v-if="authError"></account-error-list>
 
-      <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.name"
-          placeholder="Enter name"
-          required
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group id="input-group-3" label="Food:" label-for="input-3">
-        <b-form-select
-          id="input-3"
-          v-model="form.food"
-          :options="foods"
-          required
-        ></b-form-select>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Submit</b-button>
-    </b-form>
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
+        <!-- <form @submit.prevent="signup(credentials)">
+          <div>
+            <label for="username">Username: </label>
+            <input  v-model="credentials.username" type="text" id="username" required/>
+          </div>
+          <div>
+            <label for="password1">Password: </label>
+            <input v-model="credentials.password1" type="password" id="password1" required />
+          </div>
+          <div>
+            <label for="password2">Password Confirmation:</label>
+            <input v-model="credentials.password2" type="password" id="password2" required />
+          </div>
+          <div>
+            <button>Signup</button>
+          </div>
+        </form> -->
+      <b-form @submit.prevent="signup(credentials)" align="left">
+        <b-form-group label-for="username" label="ID">
+          <b-form-input v-model="credentials.username" id="username" placeholder="ID를 입력하세요" type="text" required>
+          </b-form-input>
+        </b-form-group>
+        <br>
+        <b-form-group label-for="username" label="Password">
+          <b-form-input  v-model="credentials.password1" id="username" placeholder="비밀번호를 입력하세요" required>
+          </b-form-input>
+        </b-form-group>
+        <br>
+        <b-form-group label-for="username" label="Password Confirmation">
+          <b-form-input v-model="credentials.password2" id="username" placeholder="비밀번호 확인" required>
+          </b-form-input>
+        </b-form-group>
+        <br>
+        <b-button type="submit" variant="dark">signup</b-button>
+      </b-form>
     </b-card>
+    
   </div>
 </template>
 
 <script>
+  import { mapActions, mapGetters } from 'vuex'
+  import AccountErrorList from '@/components/AccountErrorList.vue'
+
   export default {
-    name:'SignupView',
-    data() {
+    name: 'SignupView',
+    components: {
+      AccountErrorList,
+    },
+    data(){
       return {
-        form: {
-          email: '',
-          name: '',
-          food: null,
-          checked: []
-        },
-        foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-        show: true
+        credentials:{
+          // nickname: '',
+          username : '',
+          password1 : '',
+          password2 : '',
+        }
       }
     },
+    computed: {
+      ...mapGetters(['authError'])
+    },
     methods: {
-      onSubmit(event) {
-        event.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-      }
-    }
+      ...mapActions(['signup'])
+    },
   }
 </script>
+
+<style>
+
+</style>
