@@ -1,12 +1,15 @@
 <template>
   <div>
-    <h2>movie Item</h2>
+    <h2>{{ movie.title }}</h2>
   </div>
 </template>
 
 <script>
 export default {
   name: 'MovieItem',
+  props: {
+    movie: Object,
+  }
 }
 </script>
 
