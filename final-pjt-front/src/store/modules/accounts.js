@@ -1,4 +1,3 @@
-
 import drf from "@/api/drf"
 import axios from "axios"
 import router from '@/router'
@@ -59,6 +58,7 @@ export default {
       .then(res=>{
         const token = res.data.key
         dispatch('saveToken', token)
+        dispatch('fetchCurrentUser')
         router.push({ name: 'movies' })
       })
       .catch(err => {
@@ -74,7 +74,7 @@ export default {
       })
         .then(() => {
           dispatch('removeToken')
-          alert('성공적으로 logout!')
+          alert('로그아웃되었습니다.')
           router.push({ name: 'login' })
         })
         .error(err => {

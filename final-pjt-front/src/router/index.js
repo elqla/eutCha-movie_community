@@ -4,9 +4,10 @@ import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import LogoutView from '@/views/LogoutView.vue'
 import SignupView from '@/views/SignupView.vue'
+import ProfileView from '@/views/ProfileView.vue'
 import NotFound404 from '@/views/NotFound404.vue'
 import MovieCategoryView from '@/views/MovieCategoryView.vue'
-
+import store from '@/store'
 Vue.use(VueRouter)
 
 const routes = [
@@ -35,6 +36,16 @@ const routes = [
     name: 'movies',
     component: MovieCategoryView
   },
+  {
+    path: '/profile/:username',
+    name: 'profile',
+    component: ProfileView
+  },
+  // {
+  //   path: 
+  //   name: 
+  //   component: 
+  // },
   // {
   //   path: 
   //   name: 
@@ -57,5 +68,28 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+
+router.beforeEach((to, from, next) => {
+  store.commit('SET_AUTH_ERROR', null)
+
+  const { isLoggedIn } = store.getters
+
+  const noAuthPages = ['login', 'signup']
+
+  const isAuthRequired = !noAuthPages.includes(to.name)
+
+  if (isAuthRequired && !isLoggedIn) {
+    alert('Require Login. Redirecting..')
+    next({ name: 'login' })
+  } else {
+    next()
+  }
+
+  if (!isAuthRequired && isLoggedIn) {
+    next({ name: 'movies' })
+  }
+})
+
 
 export default router
