@@ -4,7 +4,7 @@
       class="d-flex justify-content-between"
     >
       <b-navbar-brand href="#">eutCha</b-navbar-brand>
-      <b-navbar-nav>
+      <b-navbar-nav class="welcome">
         <a>welcome, eutCha</a>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
@@ -25,5 +25,11 @@ export default {
 <style>
   .nav-bar {
     background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .welcome {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%)
   }
 </style>
