@@ -20,12 +20,11 @@ export default {
     RECENT_MOVIES: (state, movies) => state.recentMovies = movies,
   },
   actions: {
-    fetchMovies ({ commit }) {
+    fetchMovies ({ commit, getters }) {
       axios({
         url: drf.movies.movieAlgorithm(),
         method: 'get',
-        // headers: getters.authHeader,
-        headers: {Authorization: 'Token 69a8a34bec720138c380b80b914f982804ab6e63'}
+        headers: getters.authHeader,
       })
         .then(res => {
           commit('EUT_MOVIES', res.data)
@@ -36,8 +35,7 @@ export default {
       axios({
         url: drf.movies.moviePopular(),
         method: 'get',
-        // headers: getters.authHeader,
-        headers: {Authorization: 'Token 69a8a34bec720138c380b80b914f982804ab6e63'}
+        headers: getters.authHeader,
       })
         .then(res => {
           commit('POPULAR_MOVIES', res.data)
@@ -48,8 +46,7 @@ export default {
       axios({
         url: drf.movies.movieRecent(),
         method: 'get',
-        // headers: getters.authHeader,
-        headers: {Authorization: 'Token 69a8a34bec720138c380b80b914f982804ab6e63'}
+        headers: getters.authHeader,
       })
         .then(res => {
           commit('RECENT_MOVIES', res.data)
