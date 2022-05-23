@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fixed-top">
     <b-navbar type="dark" variant="info"
       class="d-flex justify-content-between"
     >
