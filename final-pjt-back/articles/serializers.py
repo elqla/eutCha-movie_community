@@ -52,7 +52,6 @@ class CommunitySerializer(serializers.ModelSerializer):
             fields = ('pk', 'username', 'nickname',)
     user = UserSerializer(read_only=True)
     comment_count = serializers.IntegerField()
-    # watch_movie = User.watch_movie    serializer
     class Meta:
         model = Article
         fields = ('pk', 'user', 'comment_count', 'title', 'created_at', 'movie',)
