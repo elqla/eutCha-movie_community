@@ -102,9 +102,9 @@ def comment_update_or_delete(request, article_pk, comment_pk):
 
 
 @api_view(['GET'])
-def community(request):
+def community(request, page):
     community = Article.objects.annotate(
             comment_count=Count('comments', distinct=True)
-        ).order_by('-pk')
+        ).order_by('-pk')[40*(page-1):40*page]
     serializer = CommunitySerializer(community, many=True)
     return Response(serializer.data)

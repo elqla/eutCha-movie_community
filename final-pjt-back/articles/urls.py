@@ -12,6 +12,6 @@ urlpatterns = [
     path('<int:article_pk>/comments/', views.comment_create),
     path('<int:article_pk>/comments/<int:comment_pk>/', views.comment_update_or_delete),
     # community
-    path('community/', views.community),
+    path('community/<int:page>/', views.community),
 
 ]
