@@ -32,18 +32,18 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 
-# class ArticleListSerializer(serializers.ModelSerializer):
-#     class UserSerializer(serializers.ModelSerializer):
-#         class Meta:
-#             model = User
-#             fields = ('nickname',)
+class ArticleListSerializer(serializers.ModelSerializer):
+    class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = User
+            fields = ('nickname',)
             
-#     # queryset annotate (views에서 채워줄것!)
-#     user = UserSerializer(read_only=True)
-#     comment = CommentSerializer(read_only=True, many=True)
-#     class Meta:
-#         model = Article
-#         fields = '__all__'
+    # queryset annotate (views에서 채워줄것!)
+    user = UserSerializer(read_only=True)
+    comment = CommentSerializer(read_only=True, many=True)
+    class Meta:
+        model = Article
+        fields = '__all__'
 
 
 class CommunitySerializer(serializers.ModelSerializer):

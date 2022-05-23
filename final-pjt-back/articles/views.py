@@ -1,5 +1,5 @@
 from django.shortcuts import get_list_or_404, get_object_or_404, render
-from .serializers import ArticleSerializer, CommentSerializer
+from .serializers import ArticleSerializer, CommentSerializer, ArticleListSerializer
 from .models import Article, Comment
 from django.db.models import Count
 
@@ -60,16 +60,10 @@ def comment_create(request, article_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-
-
-
-# @api_view(['GET'])
-# def community(request):
-#     articles = Article.objects.annotate(
-#         comment_count=Count('comments', distinct=True),
-#         like_count=Count('like_users', distinct=True)
-#     ).order_by('-pk')
-#     serializer = ArticleListSerializer(articles, many=True)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def article_list(request):
+    articles = Article.objects.order_by('-pk')
+    serializer = ArticleListSerializer(articles, many=True)
+    return Response(serializer.data)
 
 
