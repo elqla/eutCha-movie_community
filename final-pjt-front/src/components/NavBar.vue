@@ -8,12 +8,12 @@
         <a>welcome, eutCha</a>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
-        <router-link to="/">Home</router-link> | 
+        <router-link to="/movies">Home</router-link> | 
         <router-link to="/login" v-if="!isLoggedIn">Login</router-link> | 
         <router-link to="/logout" v-if="isLoggedIn">Logout</router-link> | 
         <li v-if="isLoggedIn">
         <router-link :to="{ name: 'profile', params: { username } }">profile</router-link>
-      </li>
+        </li>
       </b-navbar-nav>
     </b-navbar>
   </div>

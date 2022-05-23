@@ -1,9 +1,13 @@
 import drf from "@/api/drf"
 import axios from "axios"
 import router from '@/router'
+import createPersistedState from 'vuex-persistedstate'
 
 
 export default {
+  plugins:[
+    createPersistedState()
+  ],
   state: {
     token: localStorage.getItem('token') || '' ,
     currentUser: {},
@@ -98,17 +102,14 @@ export default {
       }
     },
     fetchProfile({ commit, getters }, { username }) {
-      /*
-      GET: profile URL로 요청보내기
-        성공하면
-          state.profile에 저장
-      */
       axios({
         url: drf.accounts.profile(username),
         method: 'get',
         headers: getters.authHeader,
       })
         .then(res => {
+          console.log(res)
+          console.log(res.data)
           commit('SET_PROFILE', res.data)
         })
     },
