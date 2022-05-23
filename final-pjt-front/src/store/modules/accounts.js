@@ -44,6 +44,10 @@ export default {
       })
       .then(res=>{
         console.log(res)
+        console.log('sdfsf')
+      })
+      .catch(()=>{
+        console.log('haha')
       })
     }
 
