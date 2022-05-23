@@ -17,11 +17,11 @@ export default {
   },
   articles: {
     articles: () => HOST + ARTICLES,
-    article: articlePk => HOST + ARTICLES + `${articlePk}/`,
+    // article: articlePk => HOST + ARTICLES + `${articlePk}/`,
     comments: articlePk => HOST + ARTICLES + `${articlePk}/` + COMMENTS,
-    comment: (articlePk, commentPk) =>
-      HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
-    community: page => HOST + ARTICLES + 'community/' + `${page}/`,
+    // comment: (articlePk, commentPk) =>
+    //   HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
+    // community: page => HOST + ARTICLES + 'community/' + `${page}/`,
   },
   movies: {
     movieAlgorithm: () => HOST + MOVIES + 'eut/',
@@ -29,8 +29,8 @@ export default {
     moviePopular: () => HOST + MOVIES + 'popular/',
     movieRecent: () => HOST + MOVIES + 'recent/',
     newMovie: () => HOST + MOVIES + 'new/',
-    movie: moviePk => HOST + MOVIES + `${moviePk}/`,
-    movieLike: () => HOST + MOVIES + `${moviePk}/` + 'like/',
-    movieDislike: () => HOST + MOVIES + `${moviePk}/` + 'dislike/',
+    // movie: moviePk => HOST + MOVIES + `${moviePk}/`,
+    // movieLike: () => HOST + MOVIES + `${moviePk}/` + 'like/',
+    // movieDislike: () => HOST + MOVIES + `${moviePk}/` + 'dislike/',
   },
 }
