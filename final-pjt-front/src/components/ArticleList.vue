@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <article-item
-      v-for="article in articles"
-      :key="article.pk"
-      :article="article"
-    ></article-item>
+  <div class="container">
+    <div class="row">
+      <article-item
+        v-for="article in articles"
+        :key="article.pk"
+        :article="article"
+      ></article-item>
+    </div>
   </div>
 </template>
 

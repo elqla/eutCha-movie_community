@@ -8,6 +8,7 @@ import ProfileView from '@/views/ProfileView.vue'
 import NotFound404 from '@/views/NotFound404.vue'
 import MovieCategoryView from '@/views/MovieCategoryView.vue'
 import MovieDetailView from '@/views/MovieDetailView.vue'
+import ArticleDetailView from '@/views/ArticleDetailView.vue'
 import ArticleNewView from '@/views/ArticleNewView.vue'
 import store from '@/store'
 Vue.use(VueRouter)
@@ -52,6 +53,11 @@ const routes = [
     path: '/articles/new',
     name: 'newArticle',
     component: ArticleNewView
+  },
+  {
+    path: '/articles/:articlePk',
+    name: 'article',
+    component: ArticleDetailView
   },
   // {
   //   path: 

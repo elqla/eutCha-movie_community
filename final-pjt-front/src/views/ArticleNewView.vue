@@ -15,9 +15,9 @@ export default {
   data() {
     return {
       payload: {
-        title : '',
-        movie : null,
-        content : '',
+        title: '',
+        movie: '',
+        content: '',
       }
     }
   }
