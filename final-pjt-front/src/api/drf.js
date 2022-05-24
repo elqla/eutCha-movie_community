@@ -12,7 +12,7 @@ export default {
     logout: () => HOST + ACCOUNTS + 'logout/',
     signup: () => HOST + ACCOUNTS + 'signup/',
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
-    profile: username => HOST + ACCOUNTS + 'profile/' + username,
+    profile: username => HOST + ACCOUNTS + 'profile/' + `${username}/`,
   },
   articles: {
     articles: () => HOST + ARTICLES,
@@ -21,8 +21,8 @@ export default {
     comment: (articlePk, commentPk) =>
       HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
     community: page => HOST + ARTICLES + 'community/' + `${page}/`,
-    profileArticles: username => HOST + ARTICLES + PROFILE + username,
-    movieArticles: moviePk => HOST + MOVIES + `${moviePk}/`,
+    profileArticles: username => HOST + ARTICLES + PROFILE + `${username}/`,
+    movieArticles: moviePk => HOST + ARTICLES + MOVIES + `${moviePk}/`,
   },
   movies: {
     movieAlgorithm: () => HOST + MOVIES + 'eut/',

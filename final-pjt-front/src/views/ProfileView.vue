@@ -1,26 +1,28 @@
 <template>
   <div>
     <h1>profile</h1>
-    <p>{{ profile.username }}</p>
-    {{profile.picture}}
-    <!-- <img :src="" 
-    alt="profileImg"
-    > -->
+    <p>{{ profile.nickname }}</p>
+    <!-- <img :src="profileImg" alt="img"> -->
+    <img :src="profile.picture" alt="img">
+    <p>즐겨보는 장르: {{profile}}</p>
   </div>
+
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name:'ProfileView',
+  data(){
+    return{
+    }
+  },
   computed:{
-    ...mapGetters(['profile'])
-    // profile(){
-    //   // return
-    // }
+    ...mapGetters(['profile']),   
   },
   methods: {
-    ...mapActions(['fetchProfile'])
+    ...mapActions(['fetchProfile',]),
   },
   created(){
     const payload = { username: this.$route.params.username }

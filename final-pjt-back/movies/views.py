@@ -22,6 +22,7 @@ def export_genre(user):
                 genres[genre] -= 1
             else:
                 genres[genre] = -1
+    print(genres)
     return genres
 
 
@@ -35,7 +36,7 @@ def eutgorithm(request):
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
-
+# 내가 좋아하는 장르 싫어하는 장르 하나씩 나오도록
 @api_view(['GET'])
 def eutgorithm_genre(request):
     algorithm = export_genre(request.user)

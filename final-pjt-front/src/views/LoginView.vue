@@ -18,7 +18,10 @@
           </b-form-input>
         </b-form-group>
         <br>
-        <b-button type="submit" variant="dark">login</b-button>
+        <b-button type="submit" pill variant="outline-danger">login</b-button>
+        <b-button type="link" pill variant="outline-secondary" class="mx-2">
+        <router-link to="/signup" style="text-decoration:none; color: black;">signup</router-link>
+        </b-button>
       </b-form>
     </b-card>
   </div>

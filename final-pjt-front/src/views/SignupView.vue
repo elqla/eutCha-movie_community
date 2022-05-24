@@ -23,9 +23,10 @@
           </b-form-input>
         </b-form-group>
         <br>
-        <b-button type="submit" variant="dark">signup</b-button>
+        <b-button type="submit" pill variant="outline-danger">signup</b-button>
       </b-form>
     </b-card>
+    
   </div>
 </template>
 
