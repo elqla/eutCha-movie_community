@@ -1,15 +1,9 @@
 <template>
   <div>
     <h1>FORM</h1>
-    <b-form @submit.prevent="newArticle(credentials)" align="left">
+    <b-form @submit.prevent="newArticle(credentials, moviePk)" align="left">
       <b-form-group label-for="title" label="Title">
         <b-form-input v-model="credentials.title" id="title" placeholder="제목" type="text" required>
-        </b-form-input>
-      </b-form-group>
-      <br>
-      <!-- movie object를 어떻게 넘겨주지? -->
-      <b-form-group label-for="movie" label="Movie">  
-        <b-form-input  v-model="credentials.movie" id="movie" placeholder="영화제목" type="text" required>
         </b-form-input>
       </b-form-group>
       <br>
@@ -33,9 +27,9 @@ export default {
     return {
       credentials:{
         title : this.payload.title,
-        movie : this.payload.movie,
         content : this.payload.content,
-      }
+      },
+      moviePk: this.payload.movie.id
     }
   },
   props: {

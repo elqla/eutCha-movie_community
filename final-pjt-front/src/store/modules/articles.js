@@ -56,9 +56,9 @@ export default {
           commit('ARTICLES', null)
         })
     },
-    newArticle ({ commit, getters }, credentials){ 
+    newArticle ({ commit, getters }, credentials, moviePk){ 
       axios({
-        url: drf.articles.articles(),
+        url: drf.articles.newArticles(moviePk),
         method: 'post',
         headers: getters.authHeader,
         data: credentials,
@@ -66,8 +66,8 @@ export default {
         .then(res => {
           commit('ARTICLE', res.data)
           router.push({
-            name: 'movie',
-            // params: { articlePk: getters.article.pk }
+            name: 'article',
+            params: { articlePk: getters.article.pk }
           })
         })
         .catch(err => {

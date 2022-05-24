@@ -14,6 +14,9 @@
     </div>
     <div class="article-list">
       <h1>Articles</h1>
+      <router-link to="/articles/new">
+        <button>새 글 쓰기</button>
+      </router-link>
       <article-list></article-list>
     </div>
     <div class="related-movies">

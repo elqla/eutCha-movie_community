@@ -23,6 +23,7 @@ export default {
     community: page => HOST + ARTICLES + 'community/' + `${page}/`,
     profileArticles: username => HOST + ARTICLES + PROFILE + `${username}/`,
     movieArticles: moviePk => HOST + ARTICLES + MOVIES + `${moviePk}/`,
+    newArticles: moviePk => HOST + ARTICLES + 'new/' + `${moviePk}/`,
   },
   movies: {
     movieAlgorithm: () => HOST + MOVIES + 'eut/',
