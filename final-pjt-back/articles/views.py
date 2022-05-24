@@ -116,7 +116,7 @@ def community(request, page):
 def profile_articles(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     articles = get_list_or_404(Article, user=user)
-    serializer = CommunitySerializer(articles, many=True)
+    serializer = ArticleSerializer(articles, many=True)
     return Response(serializer.data)
 
 
@@ -124,7 +124,7 @@ def profile_articles(request, username):
 def movie_articles(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     articles = get_list_or_404(Article, movie=movie)
-    serializer = CommunitySerializer(articles, many=True)
+    serializer = ArticleSerializer(articles, many=True)
     return Response(serializer.data)
 
 
