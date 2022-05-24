@@ -9,9 +9,6 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from articles import serializers
-
-
 
 @api_view(['GET', 'POST'])
 def article_list_or_create(request):
@@ -27,14 +24,10 @@ def article_list_or_create(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
     if request.method == 'GET':
         return article_list()
     elif request.method == 'POST':
         return article_create()
-
-
-
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -62,6 +55,7 @@ def article_detail_or_update_or_delete(request, article_pk):
         return article_update()
     elif request.method == 'DELETE':
         return article_delete()
+
 
 @api_view(['POST'])
 def comment_create(request, article_pk):
@@ -126,7 +120,3 @@ def movie_articles(request, movie_pk):
     articles = get_list_or_404(Article, movie=movie)
     serializer = ArticleSerializer(articles, many=True)
     return Response(serializer.data)
-
-
-    # path('profile/<str:username>/', views.profile_articles), 
-    # path('movie/<int:movie_pk>/', views.movie_articles),
