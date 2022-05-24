@@ -1,7 +1,9 @@
-from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.shortcuts import get_list_or_404, get_object_or_404
 from .serializers import ArticleSerializer, CommentSerializer, ArticleListSerializer, CommunitySerializer
 from .models import Article, Comment
+from movies.models import Movie
 from django.db.models import Count
+from django.contrib.auth import get_user_model
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -108,3 +110,23 @@ def community(request, page):
         ).order_by('-pk')[40*(page-1):40*page]
     serializer = CommunitySerializer(community, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def profile_articles(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    articles = get_list_or_404(Article, user=user)
+    serializer = CommunitySerializer(articles, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def movie_articles(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    articles = get_list_or_404(Article, movie=movie)
+    serializer = CommunitySerializer(articles, many=True)
+    return Response(serializer.data)
+
+
+    # path('profile/<str:username>/', views.profile_articles), 
+    # path('movie/<int:movie_pk>/', views.movie_articles),
