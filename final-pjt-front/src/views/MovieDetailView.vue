@@ -13,7 +13,8 @@
       </div>
     </div>
     <div class="article-list">
-      <h1>article list</h1>
+      <h1>Articles</h1>
+      <article-list></article-list>
     </div>
     <div class="related-movies">
       <h1>related movies</h1>
@@ -23,9 +24,11 @@
 </template>
 
 <script>
+import ArticleList from '@/components/ArticleList.vue'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  components: { ArticleList },
   name: 'MovieDetailView',
   data() {
     return {
@@ -40,11 +43,12 @@ export default {
   },
   methods: {
     ...mapActions([
-      'fetchMovie',
+      'fetchMovie', 'movieArticles'
     ])
   },
   created() {
     this.fetchMovie(this.moviePk)
+    this.movieArticles(this.moviePk)
   },
 }
 </script>
