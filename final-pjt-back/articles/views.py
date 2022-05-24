@@ -10,24 +10,26 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 
-@api_view(['GET', 'POST'])
-def article_list_or_create(request):
+@api_view(['GET'])
+def article_list(request):
     def article_list():
         articles = Article.objects.order_by('-pk')
         # articles = get_list_or_404(Article)[::-1]
         serializer = ArticleListSerializer(articles, many=True)
         return Response(serializer.data)
 
-    def article_create():
-        serializer = ArticleSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(user=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-
     if request.method == 'GET':
         return article_list()
-    elif request.method == 'POST':
-        return article_create()
+
+
+@api_view(['POST'])
+def article_create(request, movie_pk):
+    movie = get_object_or_404(Movie, id=movie_pk)
+    if request.method == 'POST':
+        serializer = ArticleSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user, movie = movie)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])

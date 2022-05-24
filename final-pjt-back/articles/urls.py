@@ -6,7 +6,8 @@ from . import views
 app_name="articles"
 urlpatterns = [
     # articles
-    path('', views.article_list_or_create),
+    path('', views.article_list),
+    path('new/<int:movie_pk>/', views.article_create),
     path('<int:article_pk>/', views.article_detail_or_update_or_delete),
     path('profile/<str:username>/', views.profile_articles), 
     path('movies/<int:movie_pk>/', views.movie_articles),

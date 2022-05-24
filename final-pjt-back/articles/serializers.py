@@ -30,7 +30,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             fields = ('title',)
             
     user = UserSerializer(read_only=True)
-    movie = MovieSerializer()
+    movie = MovieSerializer(read_only=True)
     comments = CommentSerializer(read_only=True, many=True)
 
     class Meta:

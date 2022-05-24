@@ -13,7 +13,6 @@ export default {
     currentUser: {},
     profile: {},
     authError: null,
-    favoriteGenre: {},
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -117,18 +116,18 @@ export default {
           commit('SET_PROFILE', res.data)
         })
     },
-    Favorite({ getters, commit }){
-      axios({
-        url: drf.movies.movieGenre(),
-        method:'get',
-        headers: getters.authHeader,
-      })
-      .then(res => {
-        console.log(res.data)
-        commit
-      this.myFavorite = res.data
-      })
-    }
+    // Favorite({ getters, commit }){
+    //   axios({
+    //     url: drf.movies.movieGenre(),
+    //     method:'get',
+    //     headers: getters.authHeader,
+    //   })
+    //   .then(res => {
+    //     console.log(res.data)
+    //     commit
+    //   this.myFavorite = res.data
+    //   })
+    // }
 
 
   },

@@ -9,18 +9,21 @@ export default {
     popularMovies: [],
     recentMovies: [],
     movie: {},
+    // allGenres:{},
   },
   getters: {
     eutMovies: state => state.eutMovies,
     popularMovies: state => state.popularMovies,
     recentMovies: state => state.recentMovies,
     movie: state => state.movie,
+    // allGenrs: state => state.allGenres,
   },
   mutations: {
     EUT_MOVIES: (state, movies) => state.eutMovies = movies,
     POPULAR_MOVIES: (state, movies) => state.popularMovies = movies,
     RECENT_MOVIES: (state, movies) => state.recentMovies = movies,
     MOVIE: (state, movie) => state.movie = movie,
+    // ALL_GENRES: (state, movie)
   },
   actions: {
     fetchMovies ({ commit, getters }) {

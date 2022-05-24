@@ -4,7 +4,14 @@
     <p>{{ profile.nickname }}</p>
     <!-- <img :src="profileImg" alt="img"> -->
     <img :src="profile.picture" alt="img">
-    <p>즐겨보는 장르: {{profile}}</p>
+    <p>좋아하는 장르:
+    <span v-for="(value, idx) in likeGenres"
+    :key="idx">{{value.genre}}</span></p>
+
+    <p>좋아하는 장르:
+    <span v-for="(value, idx) in likeGenres"
+    :key="idx">{{value.genres}}</span></p>
+
   </div>
 
 </template>
@@ -14,12 +21,11 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name:'ProfileView',
-  data(){
-    return{
-    }
-  },
   computed:{
-    ...mapGetters(['profile']),   
+    ...mapGetters(['profile',]),       
+    likeGenres(){
+      return this.profile.like_movies
+  },
   },
   methods: {
     ...mapActions(['fetchProfile',]),
