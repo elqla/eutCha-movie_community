@@ -9,7 +9,7 @@
       <br>
       <!-- movie object를 어떻게 넘겨주지? -->
       <b-form-group label-for="movie" label="Movie">  
-        <b-form-input  v-model="credentials.movie" id="movie" type="text">
+        <b-form-input  v-model="credentials.movie" id="movie" placeholder="영화제목" type="text" required>
         </b-form-input>
       </b-form-group>
       <br>

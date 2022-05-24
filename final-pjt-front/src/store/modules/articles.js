@@ -17,6 +17,19 @@ export default {
     ARTICLE: (state, article) => state.article = article,
   },
   actions: {
+    fetchArticle ({ commit, getters }, articlePk) {
+      axios({
+        url: drf.articles.article(articlePk),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('ARTICLE', res.data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
     allArticles ({ commit, getters }) {
       axios({
         url: drf.articles.articles(),
@@ -39,8 +52,8 @@ export default {
         .then(res => {
           commit('ARTICLES', res.data)
         })
-        .catch(err => {
-          console.error(err)
+        .catch(() => {
+          commit('ARTICLES', null)
         })
     },
     newArticle ({ commit, getters }, credentials){ 

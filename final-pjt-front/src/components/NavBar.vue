@@ -13,6 +13,7 @@
         <router-link to="/movies">Home</router-link> | 
         <router-link to="/login" v-if="!isLoggedIn">Login</router-link> | 
         <router-link to="/logout" v-if="isLoggedIn">Logout</router-link> | 
+        <router-link to="/articles/new" v-if="isLoggedIn">NEW</router-link> | 
         <router-link :to="{ name: 'profile', params: { username } }">profile</router-link>
       </b-navbar-nav>
     </b-navbar>
