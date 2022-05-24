@@ -2,6 +2,7 @@
   <div>
     <h1>profile</h1>
     <p>{{ profile.username }}</p>
+    {{profile.picture}}
     <!-- <img :src="" 
     alt="profileImg"
     > -->
@@ -21,10 +22,10 @@ export default {
   methods: {
     ...mapActions(['fetchProfile'])
   },
-    created() {
+  created(){
     const payload = { username: this.$route.params.username }
     this.fetchProfile(payload)
-  },
+  }
 }
 </script>
 
