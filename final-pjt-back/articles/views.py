@@ -1,14 +1,13 @@
-from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.shortcuts import get_list_or_404, get_object_or_404
 from .serializers import ArticleSerializer, CommentSerializer, ArticleListSerializer, CommunitySerializer
 from .models import Article, Comment
+from movies.models import Movie
 from django.db.models import Count
+from django.contrib.auth import get_user_model
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-
-from articles import serializers
-
 
 
 @api_view(['GET', 'POST'])
@@ -25,14 +24,10 @@ def article_list_or_create(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
     if request.method == 'GET':
         return article_list()
     elif request.method == 'POST':
         return article_create()
-
-
-
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -60,6 +55,7 @@ def article_detail_or_update_or_delete(request, article_pk):
         return article_update()
     elif request.method == 'DELETE':
         return article_delete()
+
 
 @api_view(['POST'])
 def comment_create(request, article_pk):
@@ -107,4 +103,20 @@ def community(request, page):
             comment_count=Count('comments', distinct=True)
         ).order_by('-pk')[40*(page-1):40*page]
     serializer = CommunitySerializer(community, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def profile_articles(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    articles = get_list_or_404(Article, user=user)
+    serializer = ArticleSerializer(articles, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def movie_articles(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    articles = get_list_or_404(Article, movie=movie)
+    serializer = ArticleSerializer(articles, many=True)
     return Response(serializer.data)
