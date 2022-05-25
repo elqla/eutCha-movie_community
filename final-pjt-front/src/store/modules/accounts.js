@@ -1,6 +1,7 @@
 import drf from "@/api/drf"
 import axios from "axios"
 import router from '@/router'
+import _ from 'lodash'
 import createPersistedState from 'vuex-persistedstate'
 
 
@@ -18,8 +19,9 @@ export default {
     isLoggedIn: state => !!state.token,
     currentUser: state => state.currentUser,
     profile: state => state.profile,
+    isProfile: state => !_.isEmpty(state.profile),
     authError: state => state.authError,
-    authHeader: state => ({Authorization: `Token ${state.token}`})
+    authHeader: state => ({Authorization: `Token ${state.token}`}),
   },
   mutations: {    
     SET_TOKEN: (state, token) => state.token = token,
