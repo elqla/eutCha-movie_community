@@ -1,9 +1,9 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_list_or_404, get_object_or_404
 from .serializers import MovieSerializer, ProfileMovieSerializer
-from .models import Movie
+from .models import Movie, Genre
 
 
 
@@ -29,14 +29,18 @@ def export_genre(user):
 @api_view(['GET'])
 def eutgorithm(request):
     algorithm = export_genre(request.user)
-    most_like_genre = max(algorithm, key=algorithm.get).genre
-    most_hate_genre = min(algorithm, key=algorithm.get).genre
+    if algorithm:
+        most_like_genre = max(algorithm, key=algorithm.get).genre
+        most_hate_genre = min(algorithm, key=algorithm.get).genre
+    else:
+        most_like_genre = '모험'
+        most_hate_genre = '없음'
     if most_like_genre == most_hate_genre:
         most_hate_genre = '없음'
     movies = Movie.objects.filter(genres__genre=most_like_genre)\
-        .exclude(genres__genre=most_hate_genre).order_by('-popularity')[:5]
+        .exclude(genres__genre=most_hate_genre).order_by('-popularity')[:8]
     popular_movies = Movie.objects.order_by('-popularity')[:5]
-    if len(movies) < 5:
+    if len(movies) < 8:
         serializer = MovieSerializer(popular_movies, many=True)
     else:
         serializer = MovieSerializer(movies, many=True)
@@ -46,8 +50,14 @@ def eutgorithm(request):
 @api_view(['GET'])
 def eutgorithm_genre(request):
     algorithm = export_genre(request.user)
-    most_like_genre = max(algorithm, key=algorithm.get).genre
-    most_hate_genre = min(algorithm, key=algorithm.get).genre
+    if algorithm:
+        most_like_genre = max(algorithm, key=algorithm.get).genre
+        most_hate_genre = min(algorithm, key=algorithm.get).genre
+    else:
+        most_like_genre = '모험'
+        most_hate_genre = '없음'
+    if most_like_genre == most_hate_genre:
+        most_hate_genre = '없음'
     return Response({ 
         'like_genre': most_like_genre,
         'dislike_genre': most_hate_genre,
@@ -56,22 +66,37 @@ def eutgorithm_genre(request):
 
 @api_view(['GET'])
 def popular(request):
-    movies = Movie.objects.order_by('-popularity')[:5]
+    movies = Movie.objects.order_by('-popularity')[:8]
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def recent(request):
-    movies = Movie.objects.order_by('-release_date')[:5]
+    movies = Movie.objects.order_by('-release_date')[:8]
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def movies(request):
+    movies = get_list_or_404(Movie)
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
 
 @api_view(['POST'])
 def movie_new(request):
+    data = request.data
+    genres = []
+    for genreId in request.data['genres']:
+        genre = get_object_or_404(Genre, pk=genreId)
+        genres.append({ 'id': genre.pk, 'genre': genre.genre})
+    data['genres'] = genres
+    data['popularity'] = float(data['popularity'])
+    data['movie_id'] = int(data['movie_id'])
     if request.user.is_staff:
-        serializer = MovieSerializer(data=request.data)
+        serializer = MovieSerializer(data=data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

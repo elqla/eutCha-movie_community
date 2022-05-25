@@ -7,6 +7,7 @@ urlpatterns = [
     path('eut-genre/', views.eutgorithm_genre),
     path('popular/', views.popular),
     path('recent/', views.recent),
+    path('movies/', views.movies),
     path('new/', views.movie_new),
     path('<int:movie_pk>/', views.movie_detail),
     path('<int:movie_pk>/like/', views.like_movie),

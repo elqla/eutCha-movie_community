@@ -8,18 +8,21 @@ export default {
     eutMovies: [],
     popularMovies: [],
     recentMovies: [],
+    movies: [],
     movie: {},
   },
   getters: {
     eutMovies: state => state.eutMovies,
     popularMovies: state => state.popularMovies,
     recentMovies: state => state.recentMovies,
+    movies: state => state.movies,
     movie: state => state.movie,
   },
   mutations: {
     EUT_MOVIES: (state, movies) => state.eutMovies = movies,
     POPULAR_MOVIES: (state, movies) => state.popularMovies = movies,
     RECENT_MOVIES: (state, movies) => state.recentMovies = movies,
+    MOVIES: (state, movies) => state.movies = movies,
     MOVIE: (state, movie) => state.movie = movie,
   },
   actions: {
@@ -91,6 +94,39 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => commit('MOVIE', res.data))
+        .catch(err => {
+          console.error(err.response)
+          if (err.response.status === 404) router.push({ name: 'NotFound404' })
+        })
+    },
+    newMovie({ commit, getters }, credentials) {
+      axios({
+        url: drf.movies.newMovie(),
+        method: 'post',
+        headers: getters.authHeader,
+        data: credentials
+      })
+        .then(res => {
+          commit('MOVIE', res.data)
+          router.push({
+            name: 'movieDetail',
+            params: { movieId: getters.movie.id }
+          })
+        })
+        .catch(err => {
+          console.error(err.response)
+          if (err.response.status === 404) router.push({ name: 'NotFound404' })
+        })
+    },
+    fetchAdmin({ commit, getters }) {
+      axios({
+        url: drf.movies.movies(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          commit('MOVIES', res.data)
+        })
         .catch(err => {
           console.error(err.response)
           if (err.response.status === 404) router.push({ name: 'NotFound404' })
