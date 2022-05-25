@@ -56,12 +56,12 @@ export default {
           commit('ARTICLES', null)
         })
     },
-    newArticle ({ commit, getters }, credentials, moviePk){ 
+    newArticle ({ commit, getters }, { article, moviePk }){ 
       axios({
         url: drf.articles.newArticles(moviePk),
         method: 'post',
         headers: getters.authHeader,
-        data: credentials,
+        data: article,
       })
         .then(res => {
           commit('ARTICLE', res.data)
