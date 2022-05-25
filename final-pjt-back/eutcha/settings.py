@@ -179,3 +179,7 @@ REST_FRAMEWORK = {
         
 	]   
 }
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+}
