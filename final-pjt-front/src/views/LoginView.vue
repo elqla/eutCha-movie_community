@@ -5,7 +5,7 @@
         border-variant="grey"
         bg-variant="light"
         >
-    <h1>login</h1>
+    <h1 class="login-title">login</h1>
     <account-error-list v-if="authError"></account-error-list>
       <b-form @submit.prevent="login(credentials)" align="left">
         <b-form-group label-for="username" label="ID">
@@ -19,9 +19,9 @@
         </b-form-group>
         <br>
         <b-button type="submit" pill variant="outline-danger">login</b-button>
-        <b-button type="link" pill variant="outline-secondary" class="mx-2">
-        <router-link to="/signup" style="text-decoration:none; color: black;">signup</router-link>
-        </b-button>
+        <router-link to="/signup" style="text-decoration:none; color: black;">
+          <b-button type="link" pill variant="outline-secondary" class="mx-2">signup</b-button>
+        </router-link>
       </b-form>
     </b-card>
   </div>
@@ -54,5 +54,10 @@
 </script>
 
 <style>
-
+.login-title {
+  color: black
+}
+label {
+  color: black
+}
 </style>

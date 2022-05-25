@@ -5,12 +5,22 @@
         border-variant="grey"
         bg-variant="light"
         >
-    <h1>signup</h1>
+    <h1 class="signup-title">signup</h1>
     <account-error-list v-if="authError"></account-error-list>
       <b-form @submit.prevent="signup(credentials)" align="left">
         <b-form-group label-for="username" label="ID">
           <b-form-input v-model="credentials.username" id="username" placeholder="ID를 입력하세요" type="text" required>
           </b-form-input>
+        </b-form-group>
+        <br>
+        <b-form-group label-for="nickname" label="닉네임">
+          <b-form-input v-model="credentials.nickname" id="nickname" placeholder="별명을 입력하세요" type="text" required>
+          </b-form-input>
+        </b-form-group>
+        <br>
+        <b-form-group label-for="picture" label="프로필 사진">
+          <b-form-file v-model="credentials.picture" :state="Boolean(credentials.picture)" id="picture" required>
+          </b-form-file>
         </b-form-group>
         <br>
         <b-form-group label-for="password1" label="Password">
@@ -45,11 +55,13 @@
           username : '',
           password1 : '',
           password2 : '',
+          nickname : '',
+          picture: null,
         }
       }
     },
     computed: {
-      ...mapGetters(['authError'])
+      ...mapGetters(['authError']),
     },
     methods: {
       ...mapActions(['signup'])
@@ -58,5 +70,7 @@
 </script>
 
 <style>
-
+.signup-title {
+  color: black;
+}
 </style>

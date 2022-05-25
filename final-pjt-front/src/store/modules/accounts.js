@@ -46,7 +46,7 @@ export default {
       axios({
         url:drf.accounts.signup(),
         method: 'post',
-        data:credentials,
+        data: credentials,
       })
       .then(res => {
         const token = res.data.key
