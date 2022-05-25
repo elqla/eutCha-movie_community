@@ -2,6 +2,7 @@
 <div>
   <div>
     <h1>profile</h1>
+    <p>{{profile}}</p>
     <p>{{ profile.nickname }}</p>
     <img :src="profile.picture" alt="img">
     <p>좋아하는 장르:
@@ -10,19 +11,12 @@
   </div>
   <!-- v-if 최근 본 영화가 있을때, -->
   <div>
-    <profile-item v-for="(movie_id, idx) in [profile.watch_movie]"
-    :key="idx"
-    :movie_id="movie_id">
-    </profile-item>
-  </div>
-  <div>
     <profile-article-list></profile-article-list>
   </div>
 </div>
 </template>
 
 <script>
-import ProfileItem from '@/components/ProfileItem.vue'
 import ProfileArticleList from '@/components/ProfileArticleList.vue'
 
 import { mapGetters, mapActions } from 'vuex'
@@ -33,7 +27,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name:'ProfileView',
-  components:{ ProfileItem, ProfileArticleList },
+  components:{ ProfileArticleList },
   computed:{
     ...mapGetters(['profile',]),       
     likeGenres(){

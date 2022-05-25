@@ -9,21 +9,18 @@ export default {
     popularMovies: [],
     recentMovies: [],
     movie: {},
-    watchMovie:{},
   },
   getters: {
     eutMovies: state => state.eutMovies,
     popularMovies: state => state.popularMovies,
     recentMovies: state => state.recentMovies,
     movie: state => state.movie,
-    watchMovie: state => state.watchMovie,
   },
   mutations: {
     EUT_MOVIES: (state, movies) => state.eutMovies = movies,
     POPULAR_MOVIES: (state, movies) => state.popularMovies = movies,
     RECENT_MOVIES: (state, movies) => state.recentMovies = movies,
     MOVIE: (state, movie) => state.movie = movie,
-    WATCH_MOVIE: (state, movie) => state.watchMovie = movie,
   },
   actions: {
     fetchMovies ({ commit, getters }) {
@@ -68,20 +65,6 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => commit('MOVIE', res.data))
-        .catch(err => {
-          console.error(err.response)
-          if (err.response.status === 404) {
-            router.push({ name: 'NotFound404' })
-          }
-        })
-    },
-    profileMovie({ commit, getters }, moviePk) {
-      axios({
-        url: drf.movies.watchMovie(moviePk),
-        method: 'get',
-        headers: getters.authHeader,
-      })
-        .then(res => commit('WATCH_MOVIE', res.data))
         .catch(err => {
           console.error(err.response)
           if (err.response.status === 404) {

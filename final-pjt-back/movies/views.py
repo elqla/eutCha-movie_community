@@ -31,9 +31,15 @@ def eutgorithm(request):
     algorithm = export_genre(request.user)
     most_like_genre = max(algorithm, key=algorithm.get).genre
     most_hate_genre = min(algorithm, key=algorithm.get).genre
+    if most_like_genre == most_hate_genre:
+        most_hate_genre = '없음'
     movies = Movie.objects.filter(genres__genre=most_like_genre)\
         .exclude(genres__genre=most_hate_genre).order_by('-popularity')[:5]
-    serializer = MovieSerializer(movies, many=True)
+    popular_movies = Movie.objects.order_by('-popularity')[:5]
+    if len(movies) < 5:
+        serializer = MovieSerializer(popular_movies, many=True)
+    else:
+        serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
 # 내가 좋아하는 장르 싫어하는 장르 하나씩 나오도록
@@ -69,13 +75,6 @@ def movie_new(request):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-
-@api_view(['GET'])
-def watch_movie(request, movie_pk):
-    movie = get_object_or_404(Movie, pk=movie_pk)
-    serializer = ProfileMovieSerializer(movie)
-    return Response(serializer.data)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
