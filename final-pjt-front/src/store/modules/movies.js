@@ -72,5 +72,29 @@ export default {
           }
         })
     },
+    likeMovie({ commit, getters }, moviePk) {
+      axios({
+        url: drf.movies.movieLike(moviePk),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+        .then(res => commit('MOVIE', res.data))
+        .catch(err => {
+          console.error(err.response)
+          if (err.response.status === 404) router.push({ name: 'NotFound404' })
+        })
+    },
+    dislikeMovie({ commit, getters }, moviePk) {
+      axios({
+        url: drf.movies.movieDislike(moviePk),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+        .then(res => commit('MOVIE', res.data))
+        .catch(err => {
+          console.error(err.response)
+          if (err.response.status === 404) router.push({ name: 'NotFound404' })
+        })
+    },
   },
 }

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="margin-top: 100px;">
   <div>
     <h1>profile</h1>
     <p>{{ profile.nickname }}</p>
