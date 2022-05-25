@@ -14,7 +14,7 @@ from movies.serializers import MovieSerializer
 
 
 
-- [날씨 관련 패키지 설치](https://erim1005.tistory.com/entry/vue-moment-%EC%A0%81%EC%9A%A9-%EB%B0%8F-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95)
+- [날짜 관련 패키지 설치](https://erim1005.tistory.com/entry/vue-moment-%EC%A0%81%EC%9A%A9-%EB%B0%8F-%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95)
 
 ```js
 $ npm install vue-moment --save

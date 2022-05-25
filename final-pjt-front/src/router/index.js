@@ -5,6 +5,7 @@ import LoginView from '@/views/LoginView.vue'
 import LogoutView from '@/views/LogoutView.vue'
 import SignupView from '@/views/SignupView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import CommunityView from '@/views/CommunityView.vue'
 import NotFound404 from '@/views/NotFound404.vue'
 import MovieCategoryView from '@/views/MovieCategoryView.vue'
 import MovieDetailView from '@/views/MovieDetailView.vue'
@@ -41,6 +42,11 @@ const routes = [
     component: MovieCategoryView
   },
   {
+    path: '/community/:page',
+    name: 'community',
+    component: CommunityView
+  },
+  {
     path: '/profile/:username',
     name: 'profile',
     component: ProfileView
@@ -65,11 +71,6 @@ const routes = [
     name: 'articleEdit',
     component: ArticleEditView
   },
-  // {
-  //   path: 
-  //   name: 
-  //   component: 
-  // },
   {
     path: '/404',
     name: 'NotFound404',

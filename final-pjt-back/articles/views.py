@@ -99,11 +99,20 @@ def comment_update_or_delete(request, article_pk, comment_pk):
         comment_delete()
 
 
+# @api_view(['GET'])
+# def community(request):
+#     community = Article.objects.annotate(
+#             comment_count=Count('comments', distinct=True)
+#         ).order_by('-pk')
+#     serializer = CommunitySerializer(community, many=True)
+#     return Response(serializer.data)
+
+
 @api_view(['GET'])
 def community(request, page):
     community = Article.objects.annotate(
             comment_count=Count('comments', distinct=True)
-        ).order_by('-pk')[40*(page-1):40*page]
+        ).order_by('-pk')[5*(page-1):5*page]
     serializer = CommunitySerializer(community, many=True)
     return Response(serializer.data)
 

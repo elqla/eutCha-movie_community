@@ -2,19 +2,25 @@ import router from '@/router'
 import axios from 'axios'
 import drf from '@/api/drf'
 
+import Vue from 'vue'
+import vueMoment from 'vue-moment'
+Vue.use(vueMoment)
 
 export default {
   state: {
     articles: [],
     article: {},
+    coArticles:[],
   },
   getters: {
     articles: state => state.articles,
     article: state => state.article,
+    coArticles: state => state.coArticles,
   },
   mutations: {
     ARTICLES: (state, articles) => state.articles = articles,
     ARTICLE: (state, article) => state.article = article,
+    COMMUNITY_ARTICLES:(state, articles) => state.coArticles = articles,
   },
   actions: {
     fetchArticle ({ commit, getters }, articlePk) {
@@ -74,5 +80,28 @@ export default {
           console.error(err.response.data)
         })
     },
+    communityArticles({getters, commit}, page ){
+      const articles = []
+      axios({
+        url: drf.articles.community(page),
+        method: 'get',
+        headers: getters.authHeader
+      })
+      .then(res=>{
+        res.data.forEach((article)=>{
+          articles.push({
+            '글 번호': article.pk,
+            '영화 제목':article.movie.title,
+            '게시글 제목':article.title,
+            '작성일': Vue.$moment(article.created_at).calendar(),
+            '작성자': article.user.nickname||article.user.username
+          })
+        })
+        commit('COMMUNITY_ARTICLES', articles)
+      })
+      .catch(err=>{
+        console.log(err.response)
+      })
+    }
   },
 }
