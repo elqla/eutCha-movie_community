@@ -2,6 +2,7 @@
   <div style="margin-top: 100px;">
     <article-form
       :payload="{ title: '', movie: movie, content: '' }"
+      :method="method"
     ></article-form>
   </div>
 </template>
@@ -14,7 +15,8 @@ export default {
   name: 'ArticleNewView',
   components: { ArticleForm },
   computed: {
-    ...mapGetters(['movie'])
+    ...mapGetters(['movie']),
+    method: () => 'post'
   }
 }
 </script>

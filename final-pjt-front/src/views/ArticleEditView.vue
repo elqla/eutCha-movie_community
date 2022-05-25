@@ -1,14 +1,30 @@
 <template>
-  <div>
-    <h1>Edit Article</h1>
+  <div style="margin-top: 100px;">
+    <article-form
+      :payload="{ title: article.title, movie: movie, content: article.content }"
+      :method="method"
+      :articlePk="articlePk"
+    ></article-form>
   </div>
-
 </template>
 
 <script>
-  export default {
-    name: 'AritcleEditView',
+import ArticleForm from '@/components/ArticleForm.vue'
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'ArticleEditView',
+  components: { ArticleForm },
+  computed: {
+    ...mapGetters(['movie', 'article']),
+    method: () => 'put',
+    articlePk () {
+      return this.$route.params.articlePk
+    }
   }
+}
 </script>
 
-<style></style>
+<style>
+
+</style>

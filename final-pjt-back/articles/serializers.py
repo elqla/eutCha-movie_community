@@ -27,7 +27,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     class MovieSerializer(serializers.ModelSerializer):
         class Meta:
             model = Movie
-            fields = ('title',)
+            fields = ('title','id',)
             
     user = UserSerializer(read_only=True)
     movie = MovieSerializer(read_only=True)
@@ -53,10 +53,15 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
 
 class CommunitySerializer(serializers.ModelSerializer):
+    class MovieSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Movie
+            fields = ('title', 'id')
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = User
-            fields = ('pk', 'username', 'nickname', 'watch_movie',)
+            fields = ('pk', 'username', 'nickname',)
+    movie = MovieSerializer(read_only=True)
     user = UserSerializer(read_only=True)
     comment_count = serializers.IntegerField()
     class Meta:

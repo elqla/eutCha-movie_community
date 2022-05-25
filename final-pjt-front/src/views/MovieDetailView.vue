@@ -15,10 +15,6 @@
       </div>
     </div>
     <article-list class="movie-article-list"></article-list>
-    <div class="related-movies">
-      <h1>related movies</h1>
-      <p>관련 영화를 구분할 기준이 없음...</p>
-    </div>
   </div>
 </template>
 
