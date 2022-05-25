@@ -3,11 +3,12 @@
     <b-navbar type="white"
       class="d-flex justify-content-between my-1"
     > 
-      <b-navbar-nav class="">
+  
+      <b-navbar-nav style="font-family: 'Segoe UI';">
         <router-link to="/movies">eutCha</router-link> 
         <router-link :to="{name: 'community', params: { page } }" v-if="isLoggedIn">community</router-link>
       </b-navbar-nav>
-      <b-navbar-nav class="welcome">
+      <b-navbar-nav  class="welcome">
         <a>welcome, eutCha</a>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
@@ -50,7 +51,10 @@ export default {
 
   .welcome {
     position: fixed;
+    font-size: 20px;
     left: 50%;
-    transform: translate(-50%)
-  }
+    transform: translate(-50%);
+    text-shadow: 2px 2px 0px #1565C0, 3px 3px 0px #42A5F5, 2px 2px 0px #E3F2FD;
+
+    }
 </style>

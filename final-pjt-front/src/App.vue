@@ -33,11 +33,11 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #F8F9FA;
-
 }
 
 nav {
   padding: 30px;
+  font-family: 'Segoe UI';
 }
 
 nav a {
