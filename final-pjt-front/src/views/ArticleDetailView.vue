@@ -6,8 +6,12 @@
       <div class="user-info d-flex">
         <img class="article-profile-img" :src="picture" alt="profile image">
         <p>{{ article.user.username }}</p>
-        <button>수정</button>
-        <button>삭제</button>
+        
+        <p>작성시간: {{$moment(article.created_at).calendar()}}</p>
+      <router-link :to="{ name: 'articleEdit', params: { articlePk } }">
+        <button>Edit</button>
+      </router-link>
+      <!-- <button @click="deleteArticle(articlePk)">Delete</button> -->
       </div>
       <div>
         <h2>게시글 제목: {{ article.title }}</h2>
@@ -25,6 +29,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import vueMoment from 'vue-moment'
+Vue.use(vueMoment)
+
 import CommentList from '@/components/CommentList.vue'
 import { mapGetters, mapActions } from 'vuex'
 

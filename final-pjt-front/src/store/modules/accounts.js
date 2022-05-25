@@ -27,7 +27,7 @@ export default {
     // SET_PROFILE: (state, profile) => state.profile = profile, 
     SET_PROFILE (state, profile){
       state.profile = profile
-      profile.picture = 'http://127.0.0.1:8000' + profile.picture
+      profile.picture = 'http://localhost:8000' + profile.picture
     },
     SET_AUTH_ERROR: (state, error) => state.authError = error
   },
@@ -112,23 +112,8 @@ export default {
         headers: getters.authHeader,
       })
         .then(res => {
-          // console.log(res)
           commit('SET_PROFILE', res.data)
         })
     },
-    // Favorite({ getters, commit }){
-    //   axios({
-    //     url: drf.movies.movieGenre(),
-    //     method:'get',
-    //     headers: getters.authHeader,
-    //   })
-    //   .then(res => {
-    //     console.log(res.data)
-    //     commit
-    //   this.myFavorite = res.data
-    //   })
-    // }
-
-
   },
 }

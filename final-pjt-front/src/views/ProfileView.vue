@@ -1,31 +1,44 @@
 <template>
+<div>
   <div>
     <h1>profile</h1>
     <p>{{ profile.nickname }}</p>
-    <!-- <img :src="profileImg" alt="img"> -->
     <img :src="profile.picture" alt="img">
     <p>좋아하는 장르:
     <span v-for="(value, idx) in likeGenres"
-    :key="idx">{{value.genre}}</span></p>
-
-    <p>좋아하는 장르:
-    <span v-for="(value, idx) in likeGenres"
-    :key="idx">{{value.genres}}</span></p>
-
+    :key="idx"><span v-for="(value, idx) in value.genres" :key="idx">{{value.genre}}</span></span></p>
   </div>
-
+  <!-- v-if 최근 본 영화가 있을때, -->
+  <div>
+    <profile-item v-for="(movie_id, idx) in [profile.watch_movie]"
+    :key="idx"
+    :movie_id="movie_id">
+    </profile-item>
+  </div>
+  <div>
+    <profile-article-list></profile-article-list>
+  </div>
+</div>
 </template>
 
 <script>
+import ProfileItem from '@/components/ProfileItem.vue'
+import ProfileArticleList from '@/components/ProfileArticleList.vue'
+
 import { mapGetters, mapActions } from 'vuex'
+//새로고침하면 404 뜸
+//profile뜨는것도 data가 created보다 먼저 로드되서?
+
+
 
 export default {
   name:'ProfileView',
+  components:{ ProfileItem, ProfileArticleList },
   computed:{
     ...mapGetters(['profile',]),       
     likeGenres(){
       return this.profile.like_movies
-  },
+    },
   },
   methods: {
     ...mapActions(['fetchProfile',]),
@@ -33,6 +46,7 @@ export default {
   created(){
     const payload = { username: this.$route.params.username }
     this.fetchProfile(payload)
+
   }
 }
 </script>

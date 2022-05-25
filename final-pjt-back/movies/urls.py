@@ -8,6 +8,7 @@ urlpatterns = [
     path('popular/', views.popular),
     path('recent/', views.recent),
     path('new/', views.movie_new),
+    path('watch-movie/<int:movie_pk>/', views.watch_movie),
     path('<int:movie_pk>/', views.movie_detail),
     path('<int:movie_pk>/like/', views.like_movie),
     path('<int:movie_pk>/dislike/', views.dislike_movie),

@@ -1,9 +1,9 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.shortcuts import get_list_or_404, get_object_or_404
-from .serializers import MovieSerializer
-from .models import Movie, Genre
+from django.shortcuts import get_object_or_404
+from .serializers import MovieSerializer, ProfileMovieSerializer
+from .models import Movie
 
 
 
@@ -23,7 +23,6 @@ def export_genre(user):
                 genres[genre] -= 1
             else:
                 genres[genre] = -1
-    print(genres)
     return genres
 
 
@@ -70,6 +69,13 @@ def movie_new(request):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET'])
+def watch_movie(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    serializer = ProfileMovieSerializer(movie)
+    return Response(serializer.data)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
