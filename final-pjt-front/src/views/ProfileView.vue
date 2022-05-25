@@ -2,7 +2,6 @@
 <div>
   <div>
     <h1>profile</h1>
-    <p>{{profile}}</p>
     <p>{{ profile.nickname }}</p>
     <img :src="profile.picture" alt="img">
     <p>좋아하는 장르:

@@ -1,11 +1,14 @@
 <template>
-  <div>
+  <div class="container">
     <h1>popular</h1>
-    <movie-item
-      v-for="movie in popularMovies"
-      :key="movie.id"
-      :movie="movie"
-    ></movie-item>
+    <div class="row">
+      <movie-item
+        v-for="movie in popularMovies"
+        :key="movie.id"
+        :movie="movie"
+        category="pop"
+      ></movie-item>
+    </div>
   </div>
 </template>
 

@@ -4,7 +4,7 @@
     <div class="container">
     <div class="row">
       <article-item
-        v-for="article in profile.articles"
+        v-for="article in articles"
         :key="article.pk"
         :article="article"
       ></article-item>
@@ -22,7 +22,10 @@ export default {
     ArticleItem
   },
   computed:{
-    ...mapGetters(['profile',])
+    ...mapGetters(['profile',]),
+    articles() {
+      return [...this.profile.articles].reverse()
+    }
   },
 }
 </script>

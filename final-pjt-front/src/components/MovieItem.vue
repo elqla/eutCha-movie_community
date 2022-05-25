@@ -1,71 +1,40 @@
 <template>
-  <div class="flip-container">
+  <div class="d-flex justify-content-center col-sm-12 col-md-6 col-xl-4 col-xxl-3"
+    :class="container"
+    @mouseover="flipFront"
+    @mouseout="flipBack"
+  >
     <b-card
-    overlay
-    :img-src="poster"
-    img-alt="Image"
-    style="max-width: 20rem;"
-    class="mb-2 front"
-  ></b-card>
+      overlay
+      :img-src="poster"
+      img-alt="Image"
+      style="height: 500px; max-width: 20rem; position: absolute;"
+      class="mb-2 front"
+    ></b-card>
+    <router-link :to="{ name: 'movieDetail', params: { movieId } }" class="text-decoration-none">
+      <b-card
+        style="height: 500px; max-width: 20rem;"
+        class="mb-2 back"
 
-  <b-card
-    overlay
-    :img-src="poster"
-    img-alt="Image"
-    style="max-width: 20rem; opacity:90%;"
-    class="mb-2 back"
+        text-variant="black"
+        :title="movie.title"
+      >
+        <b-card-text class="movie-overview">
+          {{ movie.overview }}
+        </b-card-text>
+        <b-card-text>
+          출연: {{ movie.credits }}
+        </b-card-text>
 
-    text-variant="black"
-    :title="movie.title"
-    :sub-title="movie.overview"
-  >
-      <!-- <b-card-text>
-        {{ movie.overview }}
-      </b-card-text> -->
-      <b-card-text>
-        출연: {{ movie.credits }}
-      </b-card-text>
+        장르:
+        <span v-for="(value, idx) in movie.genres" :key="idx">
+          {{ value.genre }}, </span>
 
-      장르:
-      <span v-for="(value, idx) in movie.genres" :key="idx">
-        {{ value.genre }}, </span>
-
-      <b-card-text>
-        ID : {{ movie.id }}
-      </b-card-text>
-      <router-link :to="{ name: 'movieDetail', params: { movieId } }">
-        <b-button variant="primary">Go somewhere</b-button>
-      </router-link>
-  </b-card>
-
-
-    <!-- <b-card
-    :title="movie.title"
-    :img-src="poster"
-    img-alt="Image"
-    img-top
-    tag="article"
-    style="max-width: 20rem;"
-    class="mb-2"
-  >
-      <b-card-text>
-        {{ movie.overview }}
-      </b-card-text>
-      <b-card-text>
-        출연: {{ movie.credits }}
-      </b-card-text>
-
-      장르:
-      <span v-for="(value, idx) in movie.genres" :key="idx">
-        {{ value.genre }}, </span>
-
-      <b-card-text>
-        ID : {{ movie.id }}
-      </b-card-text>
-      <router-link :to="{ name: 'movieDetail', params: { movieId } }">
-        <b-button variant="primary">Go somewhere</b-button>
-      </router-link>
-    </b-card> -->
+        <b-card-text>
+          ID : {{ movie.id }}
+        </b-card-text>
+      </b-card>
+    </router-link>
   </div>
 </template>
 
@@ -74,6 +43,7 @@ export default {
   name: 'MovieItem',
   props: {
     movie: Object,
+    category: String,
   },
   computed: {
     poster() {
@@ -81,57 +51,75 @@ export default {
     },
     movieId() {
       return this.movie.id
+    },
+    container() {
+      return 'flip-container' + this.category + this.movieId
+    }
+  },
+  methods: {
+    flipFront() {
+      const card = document.querySelector(`.flip-container${this.category}${this.movieId}`)
+      card.classList.add('cardRotate')
+      card.classList.remove('backRotate')
+    },
+    flipBack() {
+      const card = document.querySelector(`.flip-container${this.category}${this.movieId}`)
+      card.classList.add('backRotate')
+      card.classList.remove('cardRotate')
     }
   }
 }
-// /* entire container, keeps perspective */
-
-// /* fliper가 뭔지 모르겠음 */
-
-
-// .flip-container {
-// 	perspective: 1000px;
-// }
-// 	/* flip the pane when hovered */
-// 	.flip-container:hover .flipper, .flip-container.hover .flipper {
-// 		transform: rotateY(180deg);
-// 	}
-
-// .flip-container, .front, .back {
-// 	width: 320px;
-// 	height: 480px;
-// }
-
-// /* flip speed goes here */
-// .flipper {
-// 	transition: 0.6s;
-// 	transform-style: preserve-3d;
-
-// 	position: relative;
-// }
-
-// /* hide back of pane during swap */
-// .front, .back {
-// 	backface-visibility: hidden;
-
-// 	position: absolute;
-// 	top: 0;
-// 	left: 0;
-// }
-
-// /* front pane, placed above back */
-// .front {
-// 	z-index: 2;
-// 	/* for firefox 31 */
-// 	transform: rotateY(0deg);
-// }
-
-// /* back, initially hidden pane */
-// .back {
-// 	transform: rotateY(180deg);
-// }
 </script>
 
 <style>
+.front{
+  overflow: hidden;
+  width: 20rem;
+}
+.front img{
+  position: absolute;
+  left: 0;
+  height: 500px;
+}
+.back{
+  transform: rotateY(90deg);
+}
+.cardRotate .front{
+  opacity: 1;
+  animation: rotateAni 0.5s 1;
+  transform: rotateY(90deg);
+}
+.cardRotate .back{
+  opacity: 1;
+  animation: rotateAni2 0.5s 0.5s 1 backwards;
+  transform:rotateY(0);
+}
+.backRotate .front{
+  animation: backAni 0.5s   1; 
+  opacity: 1;
+}
+.backRotate .back{
+  opacity: 0;
+}
 
+@keyframes rotateAni{
+  0%{transform:rotateY(0);}
+  100%{transform:rotateY(90deg);}
+}
+@keyframes rotateAni2{
+  0%{transform:rotateY(-90deg);}
+  100%{transform:rotateY(0deg);}
+}
+
+@keyframes backAni{
+  0%{transform:rotateY(90deg);}
+  100%{transform:rotateY(0deg);}
+}
+
+.movie-overview{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+  overflow: hidden;
+}
 </style>

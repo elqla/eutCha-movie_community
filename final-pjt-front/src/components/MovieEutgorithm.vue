@@ -6,6 +6,7 @@
         v-for="movie in eutMovies"
         :key="movie.id"
         :movie="movie"
+        category="eut"
       ></movie-item>
     </div>
   </div>
