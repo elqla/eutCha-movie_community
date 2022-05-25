@@ -112,7 +112,7 @@ def comment_update_or_delete(request, article_pk, comment_pk):
 def community(request, page):
     community = Article.objects.annotate(
             comment_count=Count('comments', distinct=True)
-        ).order_by('-pk')[5*(page-1):5*page]
+        ).order_by('-pk')#[5*(page-1):5*page]
     serializer = CommunitySerializer(community, many=True)
     return Response(serializer.data)
 

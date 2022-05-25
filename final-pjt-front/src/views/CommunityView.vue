@@ -1,17 +1,21 @@
 <template>
   <div class="community">
-    <h1>community입니다.</h1>
-      <div>
-        <b-table stripe hover :items="coArticles">
+    <h1 class="commu-nav">eutcha-community</h1>
+      <div class="ta">
+        <b-table stripe hover :items="coArticles" :per-page="perPage" :current-page="currentPage">
         </b-table>
       </div>
+      <div>
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="rows"
+        :per-page="perPage"
+        aria-controls="my-table"
+        class="ta-nav"
+        align="center"
+      ></b-pagination>
+      </div>
   </div>
-        <!-- <b-pagination
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          aria-controls="my-table"
-        ></b-pagination> -->
 </template>
 
 <script>
@@ -30,22 +34,21 @@ export default {
     ...mapActions(['communityArticles',]),
   },
   computed:{
-    ...mapGetters(['coArticles',])
+    ...mapGetters(['coArticles',]),
+      rows() {
+        return this.coArticles.length
+      }
   },
   data(){
     return {
       page: 1,//this.$route.params.page,
-      perPage: 40,
-      // currentPage: this.page,
+      perPage: 5,
+      currentPage: 1,
       articles: this.coArticles,
     }
   },
   created(){
-    // console.log(this.coArticles)
     this.communityArticles(this.page)
-    // this.communityArticles(this.page)
-    // const payload = { page: 1 } //this.$route.params.page
-    // this.communityArticles(payload)
   }
 
 
@@ -55,12 +58,28 @@ export default {
 <style>
 .community{
   max-width: 1000px;
-}
-.article-nav{
+  margin-top: 100px;
+  color: rgb(19, 127, 177);
+  color:chocolate;
+  font-weight: bold;
   display: flex;
-  justify-content: space-between;
+  flex-direction:column;
+  margin: 100px auto;
 }
-.article-item{
-  margin: 0px 20px;
+.commu-nav{
+  /* background-color: white; */
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  font-weight: bolder;
+  font-family: serif;
+  font-family: sans-serif;
+}
+.ta{
+  background-color: white;
+}
+.ta-nav{
+  margin: 10px;
+  /* background-color: rgba(255, 255, 255, 0.871); */
 }
 </style>

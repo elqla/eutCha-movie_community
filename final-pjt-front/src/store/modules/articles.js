@@ -81,23 +81,24 @@ export default {
         })
     },
     communityArticles({getters, commit}, page ){
-      const articles = []
+      const tmp = []
       axios({
         url: drf.articles.community(page),
         method: 'get',
-        headers: getters.authHeader
+        headers: getters.authHeader,
       })
       .then(res=>{
         res.data.forEach((article)=>{
-          articles.push({
+          tmp.push({
             '글 번호': article.pk,
             '영화 제목':article.movie.title,
             '게시글 제목':article.title,
-            '작성일': Vue.$moment(article.created_at).calendar(),
+            '댓글':article.comment_count,
+            '작성일': Vue.moment(article.created_at).calendar(),
             '작성자': article.user.nickname||article.user.username
           })
         })
-        commit('COMMUNITY_ARTICLES', articles)
+        commit('COMMUNITY_ARTICLES', tmp)
       })
       .catch(err=>{
         console.log(err.response)

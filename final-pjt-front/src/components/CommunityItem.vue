@@ -12,7 +12,6 @@
       <span class="article-nickname">{{article.user.nickname || article.user.username}}</span>
       </div>
     </b-list-group-item>
-      <!-- <router-link :to="{ name: 'articleEdit', params: { articlePk } }"> -->
 
 
   </div>
