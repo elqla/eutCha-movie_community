@@ -24,7 +24,7 @@
         <b-card-text>
           출연: {{ movie.credits }}
         </b-card-text>
-
+  
         장르:
         <span v-for="(value, idx) in movie.genres" :key="idx">
           {{ value.genre }}, </span>
