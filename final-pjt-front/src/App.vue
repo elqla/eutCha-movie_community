@@ -32,7 +32,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: chocolate;
+  color: white;
 
 }
 
@@ -42,10 +42,14 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  margin-right: 5px;
+  text-decoration: none;
+
 }
 
 nav a.router-link-exact-active {
-  color: chocolate;
+  color: white;
+  text-decoration: none;
 }
 </style>
