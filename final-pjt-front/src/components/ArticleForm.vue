@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>FORM</h1>
     <b-form @submit.prevent="makeArticle(credentials)" align="left">
       <b-form-group label-for="title" label="Title">
