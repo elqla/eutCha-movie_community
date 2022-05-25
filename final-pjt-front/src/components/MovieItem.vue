@@ -15,10 +15,9 @@
       <b-card
         style="height: 500px; max-width: 20rem;"
         class="mb-2 back"
-
         text-variant="black"
-        :title="movie.title"
       >
+        <b-card-title>{{ movie.title }}</b-card-title>
         <b-card-text class="movie-overview">
           {{ movie.overview }}
         </b-card-text>
@@ -122,4 +121,13 @@ export default {
   -webkit-line-clamp: 10;
   overflow: hidden;
 }
+
+.card-title {
+  font-size: 30px;
+  background-color: rgba(125, 125, 125, 0.1);
+  padding: 1rem;
+  border-style: solid;
+  border-radius: 1rem;
+}
+
 </style>

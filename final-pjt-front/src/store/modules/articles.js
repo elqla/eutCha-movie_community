@@ -102,6 +102,53 @@ export default {
       .catch(err=>{
         console.log(err.response)
       })
-    }
+    },
+    editArticle ({ commit, getters }, { article, articlePk }){ 
+      axios({
+        url: drf.articles.article(articlePk),
+        method: 'put',
+        headers: getters.authHeader,
+        data: article,
+      })
+        .then(res => {
+          commit('ARTICLE', res.data)
+          router.push({
+            name: 'article',
+            params: { articlePk: getters.article.pk }
+          })
+        })
+        .catch(err => {
+          console.error(err.response.data)
+        })
+    },
+    deleteArticle ({ getters }, articlePk) {
+      axios({
+        url: drf.articles.article(articlePk),
+        method: 'delete',
+        headers: getters.authHeader,
+      })
+        .then(() => {
+          alert('글이 정상적으로 삭제되었습니다.')
+          router.go(-1)
+        })
+        .catch(err => {
+          console.error(err.response.data)
+        })
+    },
+    newComment ({ getters, dispatch }, { content, articlePk }) {
+      const comment = { content: content }
+      axios({
+        url: drf.articles.comments(articlePk),
+        method: 'post',
+        headers: getters.authHeader,
+        data: comment
+      })
+        .then(() => {
+          dispatch('fetchArticle', articlePk)
+        })
+        .catch(err => {
+          console.error(err.response.data)
+        })
+    },
   },
 }

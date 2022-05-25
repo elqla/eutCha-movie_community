@@ -27,7 +27,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     class MovieSerializer(serializers.ModelSerializer):
         class Meta:
             model = Movie
-            fields = ('title',)
+            fields = ('title','id',)
             
     user = UserSerializer(read_only=True)
     movie = MovieSerializer(read_only=True)
