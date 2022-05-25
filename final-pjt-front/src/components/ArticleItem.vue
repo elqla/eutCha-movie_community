@@ -39,7 +39,7 @@ export default {
 <style>
 
 .article-content {
-    display: -webkit-box;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;

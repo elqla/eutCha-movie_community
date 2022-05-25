@@ -29,9 +29,28 @@ Vue.$moment 로 호출하여 사용할 수 있다.
 
 
 
-- ㅇ
+- object는 비어있어도, v-if시 true로 인식되서 lodash로 isEmpty 검사
 
-```js
+```vue
+<p>LIKE Movie:
+<span v-if="ifNotGenre">영화를 좋아요하러 가보세요 !</span>
+    
+<script>
+  computed:{
+    ...mapGetters(['profile',]),       
+    likeGenres(){
+      return this.profile.like_movies
+    },
+    ifNotGenre(){
+      if(_.isEmpty(this.likeGenres)){
+        return true
+      }
+      else{
+        return false
+      }
+    }
+  },
+</script>
 ```
 
 
