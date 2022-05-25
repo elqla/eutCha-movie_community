@@ -1,19 +1,19 @@
 <template>
-  <div class="container">
+  <div class="article-form container">
     <h1>FORM</h1>
     <b-form @submit.prevent="makeArticle(credentials)" align="left">
-      <b-form-group label-for="title" label="Title">
+      <b-form-group label-for="title" label="Title" style="margin: 0 2rem 0 2rem">
         <b-form-input v-model="credentials.article.title" id="title" placeholder="제목" type="text" required>
         </b-form-input>
       </b-form-group>
       <br>
       <!--  -->
-      <b-form-group label-for="content" label="Content">
-        <b-form-input v-model="credentials.article.content" id="content" placeholder="내용" type="text" required>
-        </b-form-input>
+      <b-form-group label-for="content" label="Content" style="margin: 0 2rem 0 2rem">
+        <b-form-textarea v-model="credentials.article.content" id="content" placeholder="내용" rows="5" required>
+        </b-form-textarea>
       </b-form-group>
       <br>
-      <b-button type="submit" variant="dark">{{ buttonText }}</b-button>
+      <b-button type="submit" variant="primary" style="margin: 0 2rem 0 2rem">{{ buttonText }}</b-button>
     </b-form>
   </div>
 </template>
@@ -57,5 +57,15 @@ export default {
 </script>
 
 <style>
+.article-form {
+  padding: 2rem;
+  background-color: rgba(19, 127, 177, 0);
+  border-style: solid;
+  border-radius: 2rem;
+}
 
+.article-form label {
+  color: white;
+  font-size: 20px;
+}
 </style>

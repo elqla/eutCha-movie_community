@@ -5,18 +5,20 @@
     > 
   
       <b-navbar-nav style="font-family: 'Segoe UI';">
-        <router-link to="/movies">eutCha</router-link> 
-        <router-link :to="{name: 'community', params: { page } }" v-if="isLoggedIn">community</router-link>
+        <router-link to="/movies" class="logo">eutCha</router-link> 
+        <router-link :to="{name: 'community', params: { page } }" v-if="isLoggedIn" class="navbar-community">community</router-link>
       </b-navbar-nav>
       <b-navbar-nav  class="welcome">
         <a>welcome, eutCha</a>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
-        <router-link to="/movies">Home</router-link> 
-        <router-link to="/login" v-if="!isLoggedIn">Login</router-link> 
-        <router-link to="/logout" v-if="isLoggedIn">Logout  </router-link> 
-        <router-link to="/articles/new" v-if="isLoggedIn">NEW</router-link> 
-        <router-link :to="{ name: 'profile', params: { username } }">profile</router-link>
+        <b-dropdown id="dropdown" :text="greetingText" variant="outline-light">
+          <b-dropdown-item><router-link :to="{ name: 'profile', params: { username } }">Profile</router-link></b-dropdown-item>
+          <b-dropdown-item v-if="!isLoggedIn"><router-link to="/login">Login</router-link></b-dropdown-item>
+          <b-dropdown-item v-if="isLoggedIn"><router-link to="/logout">Logout</router-link> </b-dropdown-item>
+          <b-dropdown-divider v-if="isStaff"></b-dropdown-divider>
+          <b-dropdown-item v-if="isStaff"><router-link to="/admin">Admin Page</router-link> </b-dropdown-item>
+        </b-dropdown>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -36,25 +38,44 @@ export default {
     username(){
       return this.currentUser.username
     },
-
+    greetingText() {
+      return this.username + '님 안녕하세요!'
+    },
+    isStaff() {
+      if (this.currentUser.username === 'admin') return true
+      return false
+    }
   }
 }
 </script>
 
 <style>
-  .nav-bar {
-    background-color: rgba(255, 255, 255, 0.8);
-    background-color: purple;
-    background-color: rgb(93, 26, 161);
-    background-color: rgba(19, 127, 177);
-  }
+.nav-bar {
+  background-color: rgba(19, 127, 177);
+}
 
-  .welcome {
-    position: fixed;
-    font-size: 20px;
-    left: 50%;
-    transform: translate(-50%);
-    text-shadow: 2px 2px 0px #1565C0, 3px 3px 0px #42A5F5, 2px 2px 0px #E3F2FD;
+.logo {
+  position: fixed;
+  font-size: 30px;
+  top: 8px;
+  text-shadow: 2px 2px 0px #1565C0, 3px 3px 0px #42A5F5, 2px 2px 0px #E3F2FD;
+}
 
-    }
+.welcome {
+  position: fixed;
+  font-size: 20px;
+  left: 50%;
+  transform: translate(-50%);
+  text-shadow: 2px 2px 0px #1565C0, 3px 3px 0px #42A5F5, 2px 2px 0px #E3F2FD;
+}
+
+.navbar-community {
+  margin-left: 120px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  background-color: rgba(19, 127, 177) !important;
+}
 </style>
