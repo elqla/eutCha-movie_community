@@ -30,6 +30,7 @@ export default {
     movieGenre: () => HOST + MOVIES + 'eut-genre/',
     moviePopular: () => HOST + MOVIES + 'popular/',
     movieRecent: () => HOST + MOVIES + 'recent/',
+    movies: () => HOST + MOVIES + 'movies/',
     newMovie: () => HOST + MOVIES + 'new/',
     movie: moviePk => HOST + MOVIES + `${moviePk}/`,
     movieLike: moviePk => HOST + MOVIES + `${moviePk}/` + 'like/',

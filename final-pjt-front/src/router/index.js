@@ -12,6 +12,9 @@ import MovieDetailView from '@/views/MovieDetailView.vue'
 import ArticleDetailView from '@/views/ArticleDetailView.vue'
 import ArticleEditView from '@/views/ArticleEditView.vue'
 import ArticleNewView from '@/views/ArticleNewView.vue'
+import AdminNewView from '@/views/AdminNewView.vue'
+import AdminEditView from '@/views/AdminEditView.vue'
+import AdminView from '@/views/AdminView.vue'
 import store from '@/store'
 Vue.use(VueRouter)
 
@@ -40,6 +43,21 @@ const routes = [
     path: '/movies',
     name: 'movies',
     component: MovieCategoryView
+  },
+  {
+  path: '/admin',
+  name: 'admin',
+  component: AdminView
+  },
+  {
+  path: '/admin/new',
+  name: 'adminNewView',
+  component: AdminNewView
+  },
+  {
+  path: '/admin/:movieId',
+  name: 'adminEditView',
+  component: AdminEditView
   },
   {
     path: '/community/:page',
