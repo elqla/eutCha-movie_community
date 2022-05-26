@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>recent</h1>
+    <h1 class="category-title">최신 영화</h1>
     <div class="row">
       <movie-item
         v-for="movie in recentMovies"

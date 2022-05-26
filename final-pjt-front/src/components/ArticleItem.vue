@@ -9,7 +9,7 @@
     </div>
     <div v-if="isNull===2"></div>
     <div v-if="isNull===0">
-      <router-link :to="{ name: 'article', params: { articlePk } }" class="text-decoration-none text-black">
+      <router-link :to="{ name: 'article', params: { articlePk } }" class="text-decoration-none text-black movie-card">
         <b-card bg-variant="light" :header="article.title" class="text-center">
           <b-card-text class="article-content">{{ article.content }}</b-card-text>
         </b-card>
@@ -37,6 +37,12 @@ export default {
 </script>
 
 <style>
+.movie-card .card-header {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
 
 .article-content {
   display: -webkit-box;

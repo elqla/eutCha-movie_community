@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="margin-top: 100px;">
     <h1>newMovie</h1>
-    <b-form @submit.prevent="newMovie(credentials)" align="left">
+    <b-form @submit.prevent="newMovie(credentials)" align="left" class="movie-form">
       <b-form-group label-for="title" label="제목">
         <b-form-input v-model="credentials.title" id="title" placeholder="제목" type="text" required>
         </b-form-input>
@@ -42,7 +42,7 @@
         <b-form-input v-model="credentials.poster_url" id="poster_url" placeholder="/asdf.jpg" type="text" required>
         </b-form-input>
       </b-form-group>
-      <b-button type="submit" variant="dark">영화 등록하기</b-button>
+      <b-button type="submit" variant="primary" style="margin-top:1rem;">영화 등록하기</b-button>
     </b-form>
   </div>
 </template>
@@ -94,5 +94,14 @@ export default {
 </script>
 
 <style>
+.movie-form {
+  padding: 2rem;
+  border-style: solid;
+  border-radius: 2rem;
+}
 
+.movie-form label {
+  color: white;
+  font-size: 20px;
+}
 </style>

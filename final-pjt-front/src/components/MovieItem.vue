@@ -18,20 +18,16 @@
         text-variant="black"
       >
         <b-card-title>{{ movie.title }}</b-card-title>
-        <b-card-text class="movie-overview">
+        <b-card-text class="movie-text">
           {{ movie.overview }}
         </b-card-text>
-        <b-card-text>
+        <b-card-text class="movie-text">
           출연: {{ movie.credits }}
         </b-card-text>
   
-        장르:
-        <span v-for="(value, idx) in movie.genres" :key="idx">
-          {{ value.genre }}, </span>
-
-        <b-card-text>
-          ID : {{ movie.id }}
-        </b-card-text>
+        <div class="movie-genre">장르: 
+        <span v-for="(value, idx) in movie.genres" :key="idx" class="movie-genre">
+          <span v-if="idx!=0">, </span>{{ value.genre }}</span></div>
       </b-card>
     </router-link>
   </div>
@@ -81,7 +77,9 @@ export default {
   height: 500px;
 }
 .back{
+  background-color: rgb(46, 46, 46) !important;
   transform: rotateY(90deg);
+  font-family: 'Gowun Dodum', sans-serif;
 }
 .cardRotate .front{
   opacity: 1;
@@ -115,19 +113,23 @@ export default {
   100%{transform:rotateY(0deg);}
 }
 
-.movie-overview{
+.card-title {
+  font-size: 30px;
+  padding: 1rem;
+  color: rgb(255, 245, 225);
+  word-break: keep-all;
+  }
+
+.movie-text{
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 10;
   overflow: hidden;
+  color: rgb(255, 245, 225);
+  text-align: start;
 }
 
-.card-title {
-  font-size: 30px;
-  background-color: rgba(125, 125, 125, 0.1);
-  padding: 1rem;
-  border-style: solid;
-  border-radius: 1rem;
+.movie-genre {
+  color: rgb(255, 245, 225);
 }
-
 </style>

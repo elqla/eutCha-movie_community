@@ -1,6 +1,6 @@
 <template>
   <div class="article-form container">
-    <h1>FORM</h1>
+    <h1>{{ buttonText }}</h1>
     <b-form @submit.prevent="makeArticle(credentials)" align="left">
       <b-form-group label-for="title" label="Title" style="margin: 0 2rem 0 2rem">
         <b-form-input v-model="credentials.article.title" id="title" placeholder="제목" type="text" required>

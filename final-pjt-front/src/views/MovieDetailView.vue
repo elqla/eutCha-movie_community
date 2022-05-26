@@ -73,6 +73,7 @@ export default {
   padding: 2rem;
   border-style: solid;
   border-radius: 3rem;
+  font-family: 'Gowun Dodum', sans-serif;
 }
 .movie-article-list {
   margin-top: 1rem;

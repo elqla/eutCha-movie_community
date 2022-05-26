@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex comment-item">
-    <div class="comment-user">{{ comment.user.username }}, 닉네임 : {{ comment.user.nickname }}</div>
+    <div class="comment-user">{{ comment.user.nickname || comment.user.username }}</div>
     <div class="comment-content">{{ comment.content }}</div>
   </div>
 </template>
@@ -21,6 +21,7 @@ export default {
   border-style: solid;
   border-width: 1px;
   border-radius: 1rem;
+  font-family: 'Gowun Dodum', sans-serif;
 }
 
 .comment-user {
