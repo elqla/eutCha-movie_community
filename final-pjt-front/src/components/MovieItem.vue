@@ -79,6 +79,7 @@ export default {
   overflow: hidden;
   height: var(--cardheight);
   width: var(--cardwidth);
+  height: var(--cardheight);
   background-color: black !important;
 }
 .front img{
@@ -106,7 +107,7 @@ export default {
   transform:rotateY(0);
 }
 .backRotate .front{
-  animation: backAni 0.5s   1; 
+  animation: backAni 0.5s 1; 
   opacity: 1;
 }
 .backRotate .back{

@@ -1,12 +1,11 @@
 <template>
   <div class="container" style="margin-top: 100px;">
-    <h1 style="font-family: 'Gowun Dodum', sans-serif;">{{ article.title }}</h1>
     <div class="d-flex flex-column align-items-start">
       <router-link :to="{ name: 'movieDetail', params: { movieId } }" class="text-decoration-none text-white">
         <h2 style="font-family: 'Gowun Dodum', sans-serif;">{{ article.movie.title }}</h2>
       </router-link>
       <div class="article-detail d-flex row">
-        <div class="article-detail-user-info d-flex flex-column col-12 col-md-3">
+        <div class="container-item1 article-detail-user-info d-flex flex-column col-12 col-md-3">
           <div class="d-flex">
             <div class="article-detail-user-info-img">
               <img :src="picture" alt="profile image">
@@ -21,8 +20,12 @@
             <b-button @click="deleteArticle(articlePk)" pill variant="danger">삭제</b-button>
           </div>
         </div>
-        <div class="article-detail-context d-flex flex-column align-items-start col-12 col-md-9">
-          <p>{{ article.content }}</p>
+        
+        <div class="container-item2 d-flex flex-column col-12 col-md-9">
+          <h1 style="font-family: 'Gowun Dodum', sans-serif;">{{ article.title }}</h1>
+          <div class="article-detail-context d-flex flex-column align-items-start">
+            <p>{{ article.content }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -134,6 +137,7 @@ export default {
 
 .article-detail-context {
   padding: 0 1rem 1rem 1rem;
+  font-size: 20px;
   text-align: start;
   background-color: rgba(0, 0, 0, 0.1);
 
@@ -143,4 +147,15 @@ export default {
   margin-left: 20px;
   width: 80px;
 }
+
+.container-item2{
+  padding: 1rem;
+  /* border-style: solid; */
+  /* border-color: rgba(66, 66, 66, 0.185); */
+  background-color: rgba(121, 121, 121, 0.144);
+  color: rgb(255, 255, 255);
+  border-radius: 1rem;
+  line-height: 35px;
+}
+
 </style>

@@ -35,7 +35,7 @@ export default {
   data(){
     return {
       page: 1,
-      perPage: 5,
+      perPage: 8,
       currentPage: 1,
       articles: this.coArticles,
 
@@ -63,28 +63,33 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Roboto:ital,wght@0,300;1,300&display=swap');
+
 .community{
   max-width: 1000px;
   margin-top: 100px;
   color: rgb(19, 127, 177);
   color:rgb(197, 197, 197); 
-  font-weight: bold;
+  /* font-weight: bold; */
   display: flex;
   flex-direction:column;
   margin: 100px auto;
+  font-family: 'Do Hyeon', sans-serif;
+
 }
 .commu-nav{
   text-align: left;
   margin-left: 20px;
   margin-bottom: 10px;
-  font-weight: bolder;
-  font-family: 'Segoe UI';
-  text-shadow: 1px 1px 0px #1565C0, 2px 2px 0px #42A5F5, 1px 3px 0px #E3F2FD;
+  /* font-weight: bolder; */
+  color:rgb(192, 0, 144);
+  font-family: 'Do Hyeon', sans-serif;
 }
 .ta{
   background-color: white;
 }
 .ta-nav{
+  padding-top:30px;
   margin: 10px;
 }
 </style>
