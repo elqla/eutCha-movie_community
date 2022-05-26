@@ -102,7 +102,7 @@ get_movie_datas()
 
 ## eutCha 구성
 
-![image-20220526221145540](images/image-20220526221145540.png) 
+![eutCha_main](images/eutCha_main.gif)
 
  페이지에 접속하려 할 때, 가장 먼저 만나게 되는 대문페이지에 애니메이션을 주어, 사용자의 관심을 끌 수 있도록 했다.
 
@@ -111,3 +111,11 @@ get_movie_datas()
 ![image-20220526221353969](images/image-20220526221353969.png) 
 
  대문페이지의 아무곳을 클릭하면, 로그인 창으로 넘어오게되고, 회원
+
+
+
+![eutCha_movie](images/eutCha_movie.gif)
+
+
+
+![eutCha_community](images/eutCha_community.gif)

@@ -1,5 +1,3 @@
-![image-20220523221118244](images/image-20220523221118244.png)/오타
-
 - 하위 컴포넌트 참조
 
 ```python
@@ -85,16 +83,3 @@ methds:{
     }
 }
 ```
-
-
-
-- 내가 작성한 게시글이 한줄로 되었다.
-- container 하위에 row를 적용시켜준다.
-
-```vue
-    <div class="container">
-      <div v-if="isProfile" class="articleItems row">
-```
-
-
-

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="margin-top: 100px;">
+  <div class="container" style="margin-top: 100px;" v-if="ifArticle">
     <div class="d-flex flex-column align-items-start">
       <router-link :to="{ name: 'movieDetail', params: { movieId } }" class="text-decoration-none text-white">
         <h2 style="font-family: 'Gowun Dodum', sans-serif;">{{ article.movie.title }}</h2>
@@ -37,11 +37,13 @@
         </b-form-input>
         <b-button type="submit" variant="dark">작성</b-button>
       </b-form>
-      <comment-list
-        v-for="comment in comments"
-        :key="comment.id"
-        :comment="comment"
-      ></comment-list>
+      <div v-if="ifNotComment">
+        <comment-list
+          v-for="comment in comments"
+          :key="comment.id"
+          :comment="comment"
+        ></comment-list>
+      </div>
     </div>
   </div>
 </template>
@@ -50,6 +52,7 @@
 import Vue from 'vue'
 import vueMoment from 'vue-moment'
 Vue.use(vueMoment)
+import _ from 'lodash'
 
 import CommentList from '@/components/CommentList.vue'
 import { mapGetters, mapActions } from 'vuex'
@@ -84,6 +87,22 @@ export default {
       return {
         content: this.comment,
         articlePk: this.articlePk
+      }
+    },
+    ifNotComment(){
+      if(!_.isEmpty(this.comments)){
+        return true
+      }
+      else{
+        return false
+      }
+    },
+    ifArticle(){
+      if(!_.isEmpty(this.article)){
+        return true
+      }
+      else{
+        return false
       }
     }
   },
