@@ -4,16 +4,19 @@
     <router-link to="/admin/new">
       <b-button class="mb-3" pill variant="success">영화 추가하기</b-button>
     </router-link>
-    <ul v-for="movie in movies" :key="movie.id" class="d-flex align-items-center list-group">
+
+
+    <div v-for="movie in movies" :key="movie.id" class="">
       <router-link :to="{ name: 'adminEditView', params: { movieId: movie.id } }">
-        <li class="list-group-item text-center">
-          <div class="img">
-            <img :src="'https://image.tmdb.org/t/p/w500'+movie.poster_url" alt="">
-          </div>
-          <div>{{ movie.title }}</div>
-        </li>
+      <b-card class="adminMovie" :img-src="'https://image.tmdb.org/t/p/w500'+movie.poster_url" alt="img" img-top>
+        <b-card-text>
+          <p>{{ movie.title }}</p>
+        </b-card-text>
+      </b-card>
       </router-link>
-    </ul>
+    </div>
+
+
   </div>
 </template>
 
@@ -35,6 +38,10 @@ export default {
 </script>
 
 <style>
+.adminMovie{
+  width: 200px;
+  margin: 20px;
+}
 .list-group-item {
   margin: 10px;
   max-width: 300px;
