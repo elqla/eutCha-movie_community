@@ -118,6 +118,20 @@ export default {
           if (err.response.status === 404) router.push({ name: 'NotFound404' })
         })
     },
+    deleteMovie({ dispatch, getters }, movieId) {
+      axios({
+        url: drf.movies.movie(movieId),
+        method: 'delete',
+        headers: getters.authHeader,
+      })
+        .then(() => {
+          dispatch('fetchAdmin')
+        })
+        .catch(err => {
+          console.error(err.response)
+          if (err.response.status === 404) router.push({ name: 'NotFound404' })
+        })
+    },
     fetchAdmin({ commit, getters }) {
       axios({
         url: drf.movies.movies(),

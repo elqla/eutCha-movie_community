@@ -10,7 +10,7 @@
             <div class="article-detail-user-info-img">
               <img :src="picture" alt="profile image">
             </div>
-            <div class="article-detail-user-info-username">{{ article.user.username }}</div>
+            <div class="article-detail-user-info-username">{{ article.user.nickname || article.user.username }}</div>
           </div>
           <div class="article-detail-user-info-created">{{$moment(article.created_at).calendar()}}</div>
           <div v-if="isCurrentUser" class="article-detail-user-info-button d-flex justify-content-end">

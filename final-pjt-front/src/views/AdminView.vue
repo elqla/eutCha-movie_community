@@ -8,13 +8,14 @@
     <div class="container">
       <div class="row">
         <div v-for="movie in movies" :key="movie.id" class="col-3">
-          <router-link :to="{ name: 'adminEditView', params: { movieId: movie.id } }">
           <b-card class="adminMovie" :img-src="'https://image.tmdb.org/t/p/w500'+movie.poster_url" alt="img" img-top>
-            <b-card-text>
-              <p>{{ movie.title }}</p>
-            </b-card-text>
+            <router-link :to="{ name: 'adminEditView', params: { movieId: movie.id } }">
+              <b-card-text>
+                <p>{{ movie.title }}</p>
+              </b-card-text>
+            </router-link>
+              <b-button @click="deleteMovie(movie.id)" pill variant="outline-danger">삭제</b-button>
           </b-card>
-          </router-link>
         </div>
       </div>
     </div>
@@ -32,7 +33,7 @@ export default {
     ...mapGetters(['movies']),
   },
   methods: {
-    ...mapActions(['fetchAdmin'])
+    ...mapActions(['fetchAdmin', 'deleteMovie'])
   },
   created() {
     this.fetchAdmin()
