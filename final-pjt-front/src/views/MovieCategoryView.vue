@@ -36,4 +36,9 @@ export default {
 .category {
   margin-top: 100px;
 }
+.category-title {
+  margin: 2rem;
+  font-family: 'Segoe UI';
+  text-shadow: 1px 1px 0px #1565C0, 2px 2px 0px #42A5F5, 1px 3px 0px #E3F2FD;
+}
 </style>

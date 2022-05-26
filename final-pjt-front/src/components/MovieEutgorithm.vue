@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>algorithm</h1>
+    <h1 class="category-title">{{ currentUser.username }}님을 위한 추천 영화</h1>
     <div class="row">
       <movie-item
         v-for="movie in eutMovies"
@@ -22,7 +22,7 @@ export default {
     MovieItem,
   },
   computed: {
-    ...mapGetters(['eutMovies',]),
+    ...mapGetters(['eutMovies', 'currentUser']),
   }
 }
 </script>

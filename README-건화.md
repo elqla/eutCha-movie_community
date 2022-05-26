@@ -58,7 +58,10 @@ accounts에서 프로필에 관련된 응답을 할 수 있도록 대부분 수�
 - signup이 안된다...
   - nickname과 picture는 allauth로 업로드를 못하나?
 - 해결방안
-  - django에서 CustomRegisterSerializer와 CustomAccountAdapter를 만들어주고, settings.py에 등록해주면 된다.
+
+  - django와 vue 모두에서 하나씩 해결해주어야 한다.
+
+1. django에서 CustomRegisterSerializer와 CustomAccountAdapter를 만들어주고, settings.py에 등록해주면 된다.
 
 ```python
 # accounts/adapters.py
@@ -106,5 +109,22 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'
+```
+
+2. vue에서 formdata를 넘겨줄 때, 그냥 object로 넘기면 안되고, formdata라는 객체를 새로 생성해서 넘겨주어야한다.
+
+```js
+    methods: {
+      ...mapActions(['signup']),
+      newFormdata() {
+        const formdata = new FormData()
+        formdata.append('username', this.credentials.username)
+        formdata.append('password1', this.credentials.password1)
+        formdata.append('password2', this.credentials.password2)
+        formdata.append('nickname', this.credentials.nickname)
+        formdata.append('picture', this.credentials.picture)
+        this.signup(formdata)
+      }
+    },
 ```
 

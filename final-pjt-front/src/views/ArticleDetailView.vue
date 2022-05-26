@@ -1,9 +1,9 @@
 <template>
   <div class="container" style="margin-top: 100px;">
-    <h1>ArticleDetailView</h1>
+    <h1 style="font-family: 'Gowun Dodum', sans-serif;">{{ article.title }}</h1>
     <div class="d-flex flex-column align-items-start">
-      <router-link :to="{ name: 'movieDetail', params: { movieId } }" class="text-decoration-none text-black">
-        <h2>{{ article.movie.title }}</h2>
+      <router-link :to="{ name: 'movieDetail', params: { movieId } }" class="text-decoration-none text-white">
+        <h2 style="font-family: 'Gowun Dodum', sans-serif;">{{ article.movie.title }}</h2>
       </router-link>
       <div class="article-detail d-flex row">
         <div class="article-detail-user-info d-flex flex-column col-12 col-md-3">
@@ -22,23 +22,23 @@
           </div>
         </div>
         <div class="article-detail-context d-flex flex-column align-items-start col-12 col-md-9">
-          <h2 class="align-self-center">{{ article.title }}</h2>
           <p>{{ article.content }}</p>
         </div>
       </div>
     </div>
     <hr>
-    <h1>Comment List</h1>
-    <b-form @submit.prevent="createComment(credential)" align="left" class="comment-form d-flex mb-3">
-      <b-form-input v-model="comment" id="content" placeholder="댓글을 작성해주세요." type="text" required>
-      </b-form-input>
-      <b-button type="submit" variant="dark">작성</b-button>
-    </b-form>
-    <comment-list
-      v-for="comment in comments"
-      :key="comment.id"
-      :comment="comment"
-    ></comment-list>
+    <div class="container">
+      <b-form @submit.prevent="createComment(credential)" align="left" class="comment-form d-flex mb-3">
+        <b-form-input v-model="comment" id="content" placeholder="댓글을 작성해주세요." type="text" required>
+        </b-form-input>
+        <b-button type="submit" variant="dark">작성</b-button>
+      </b-form>
+      <comment-list
+        v-for="comment in comments"
+        :key="comment.id"
+        :comment="comment"
+      ></comment-list>
+    </div>
   </div>
 </template>
 
@@ -97,13 +97,16 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR&display=swap');
+
 .article-detail {
   width: 100%;
+  font-family: 'Gowun Dodum', sans-serif;
 }
 
 .article-detail-user-info {
-  max-height: 250px;
-  padding: 2rem;
+  max-height: 220px;
+  padding: 1rem;
   border-style: dashed;
   border-radius: 1rem;
 }
@@ -130,12 +133,10 @@ export default {
 }
 
 .article-detail-context {
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
+  text-align: start;
   background-color: rgba(0, 0, 0, 0.1);
-}
 
-.article-detail-context > h2 {
-  font-size: 3rem;
 }
 
 .comment-form > button {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="article-list">
     <h1>Articles</h1>
     <router-link to="/articles/new" v-if="!articleNull">
       <b-button class="active mb-3" pill variant="outline-success">새 후기 쓰기</b-button>
@@ -38,5 +38,7 @@ export default {
 </script>
 
 <style>
-
+.article-list {
+  font-family: 'Gowun Dodum', sans-serif;
+}
 </style>
