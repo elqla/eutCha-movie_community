@@ -3,7 +3,7 @@
     <router-link to="/login" class="gate mast animate" id="mast">
       <header class="mast__header">
         <span class="mast__icon">📽</span>
-        <h1 class="mast__title js-letters text-animate" style="font-family: 'Gowun Dodum', sans-serif;"></h1>
+        <h1 class="mast__title js-letters text-animate"></h1>
       </header>
       <!-- <img src="../assets/title.png" alt="Home title"> -->
     </router-link>
@@ -15,7 +15,7 @@ export default {
   name: 'HomeView',
   data() {
     return {
-      gateLetters: '나는 네가.. 어제 본 영화를 알고있다!!!!'
+      gateLetters: '나는 네가..     어제 본 영화를 알고있다'
     }
   },
   methods: {
@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Roboto:ital,wght@0,300;1,300&family=Sunflower&display=swap');
 .gate {
   text-decoration: none;
   
@@ -52,7 +53,7 @@ export default {
 }
 
 .mast:hover {
-  color: grey;
+  color: rgb(210, 255, 8);
 }
 .mast__header {
   padding: 1em;
@@ -60,9 +61,9 @@ export default {
 .mast__title {
   margin: 0.15em auto;
   padding: 0 1em;
-  font-family: Shrikhand, georgia;
+  font-family: 'Black And White Picture', sans-serif;
   font-size: calc(100% + 3.85vw);
-  color: white;
+  color: rgb(255, 0, 0);
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
 }
 .mast__text {
@@ -121,7 +122,7 @@ export default {
 .animate .mast__title > *:nth-child(6) {
   -webkit-animation-delay: 0.6s;
           animation-delay: 0.6s;
-}
+  }
 .animate .mast__title > *:nth-child(7) {
   -webkit-animation-delay: 0.7s;
           animation-delay: 0.7s;
