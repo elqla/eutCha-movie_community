@@ -43,21 +43,63 @@ Vue.$moment 로 호출하여 사용할 수 있다.
     },
     ifNotGenre(){
       if(_.isEmpty(this.likeGenres)){
-        return true
-      }
-      else{
-        return false
-      }
-    }
-  },
+        return true}
+      else{  return false  }}},
 </script>
 ```
 
 
 
+- profileView.vue
+
+```vue
+ProfileView.vue
+--- ProfileArticleList.vue
+```
+
+프로필에서,  프로필 데이터를 로드할때 
+내가 쓴 게시물이 재접속해야만 로드가 되고, 처음 페이지 접속 시 로드 되지 않았음.
+`store/modules/accounts.js`에서 `isProfile: state => !_.isEmpty(state.profile)`를 설정해주었다.
+
+이를 하위 컴포넌트인, `ProfileArticleList.vue`에서 프로필이 있을때 바로 로드되도록 `v-if`를 설정해주었다.
+
+```vue
+<div v-if="isProfile" class="row">
+      <article-item
+        v-for="article in articles"
+        :key="article.pk"
+        :article="article"></article-item>	
+```
 
 
 
+- signup과정에서, 사진파일을 업로드할때 data를 object에 담지않고, formdata에 담아서 보내야함.
+  또한 사진은 v-model을 사용하지 않는다
+
+  [참고]([https://velog.io/@ready2start/DRF-djrestauth%EB%A1%9C-%EC%BB%A4%EC%8A%A4%ED%85%80-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0](https://velog.io/@ready2start/DRF-djrestauth로-커스텀-회원가입-구현하기))
+
+```js
+methds:{
+    newFormdata(){
+        const formdata = new Formdata()
+    }
+}
+```
+
+
+
+- 내가 작성한 게시글이 한줄로 되었다.
+
+```vue
+    <div class="container">
+      <div v-if="isProfile" class="articleItems row">
+          
+<style>
+.articleItems{
+  display: flex;
+  flex-flow: row nowrap;  //이건 적용이 
+}
+```
 
 
 

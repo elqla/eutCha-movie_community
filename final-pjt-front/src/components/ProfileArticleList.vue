@@ -1,14 +1,15 @@
 <template>
-  <div>
-    <h1>profilearticlelist</h1>
+  <div class="articleList">
+    <h1>내가 작성한 게시글</h1>
     <div class="container">
-    <div v-if="isProfile" class="row">
-      <article-item
-        v-for="article in articles"
-        :key="article.pk"
-        :article="article"
-      ></article-item>
-    </div>
+      <div v-if="isProfile" class="articleItems row">
+        <article-item
+          v-for="article in articles"
+          :key="article.pk"
+          :article="article"
+          class="articleItem"
+        ></article-item>
+      </div>
   </div>
   </div>
 </template>
@@ -31,5 +32,15 @@ export default {
 </script>
 
 <style>
-
+.articleList{
+  /* margin: auto; */
+  max-width: 1000px;
+  padding: 20px;
+}
+.articleItems{
+  display: flex;
+}
+.articleItem{
+  padding: 10px;
+}
 </style>

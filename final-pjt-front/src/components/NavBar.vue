@@ -50,6 +50,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Roboto:ital,wght@0,300;1,300&display=swap');
+
 .nav-bar {
   background-color: rgba(19, 127, 177);
 }
@@ -77,5 +79,9 @@ export default {
   position: absolute;
   top: 45px;
   background-color: rgba(19, 127, 177) !important;
+}
+#dropdown{
+  /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: 'Do Hyeon', sans-serif;
 }
 </style>

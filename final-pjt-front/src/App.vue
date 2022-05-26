@@ -37,7 +37,7 @@
 
 nav {
   padding: 30px;
-  font-family: 'Segoe UI';
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 nav a {
