@@ -92,20 +92,12 @@ def comment_update_or_delete(request, article_pk, comment_pk):
             comments = article.comments.all()
             serializer = CommentSerializer(comments, many=True)
             return Response(serializer.data)
+            # return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
 
     if request.method=='PUT':
-        comment_update()
+        return comment_update()
     elif request.method=='DELETE':
-        comment_delete()
-
-
-# @api_view(['GET'])
-# def community(request):
-#     community = Article.objects.annotate(
-#             comment_count=Count('comments', distinct=True)
-#         ).order_by('-pk')
-#     serializer = CommunitySerializer(community, many=True)
-#     return Response(serializer.data)
+        return comment_delete()
 
 
 @api_view(['GET'])

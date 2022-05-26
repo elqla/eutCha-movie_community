@@ -89,16 +89,11 @@ methds:{
 
 
 - 내가 작성한 게시글이 한줄로 되었다.
+- container 하위에 row를 적용시켜준다.
 
 ```vue
     <div class="container">
       <div v-if="isProfile" class="articleItems row">
-          
-<style>
-.articleItems{
-  display: flex;
-  flex-flow: row nowrap;  //이건 적용이 안된다! container여서 그런가 ?
-}
 ```
 
 

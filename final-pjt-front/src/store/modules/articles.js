@@ -151,5 +151,19 @@ export default {
           console.error(err.response.data)
         })
     },
+    deleteComment ({ getters }, {articlePk, commentPk}) {
+      axios({
+        url: drf.articles.comment(articlePk, commentPk),
+        method: 'delete',
+        headers: getters.authHeader,
+      })
+        .then(() => {
+          alert('댓글이 정상적으로 삭제되었습니다.')
+          router.go(-1)
+        })
+        .catch(err => {
+          console.error(err.response.data)
+        })
+    },
   },
 }

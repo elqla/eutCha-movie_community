@@ -13,7 +13,7 @@ class CommentSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     class Meta:
         model = Comment
-        exclude = ('updated_at', )  #('pk', 'user', 'content', 'article',)   ### created_at안써줘도 vue에서 접근 가능한가 ?
+        fields = '__all__'  #('pk', 'user', 'content', 'article',)   ### created_at안써줘도 vue에서 접근 가능한가 ?
         read_only_fields = ('article',)
 
 

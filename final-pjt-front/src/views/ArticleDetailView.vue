@@ -5,14 +5,15 @@
         <h2 style="font-family: 'Gowun Dodum', sans-serif;">{{ article.movie.title }}</h2>
       </router-link>
       <div class="article-detail d-flex row">
-        <div class="container-item1 article-detail-user-info d-flex flex-column col-12 col-md-3">
+        <div class="container-item1 article-detail-user-info d-flex flex-column col-12 col-lg-3">
           <div class="d-flex">
             <div class="article-detail-user-info-img">
               <img :src="picture" alt="profile image">
             </div>
             <div class="article-detail-user-info-username">{{ article.user.nickname || article.user.username }}</div>
           </div>
-          <div class="article-detail-user-info-created">{{$moment(article.created_at).calendar()}}</div>
+            <span class="article-detail-user-info-created">create: {{$moment(article.created_at).calendar()}}</span>
+            <span class="article-detail-user-info-updated">update: {{$moment(article.updated_at).calendar()}}</span>
           <div v-if="isCurrentUser" class="article-detail-user-info-button d-flex justify-content-end">
             <router-link :to="{ name: 'articleEdit', params: { articlePk } }">
               <b-button pill variant="primary">수정</b-button>
@@ -21,7 +22,7 @@
           </div>
         </div>
         
-        <div class="container-item2 d-flex flex-column col-12 col-md-9">
+        <div class="container-item2 d-flex flex-column col-12 col-lg-9">
           <h1 style="font-family: 'Gowun Dodum', sans-serif;">{{ article.title }}</h1>
           <div class="article-detail-context d-flex flex-column align-items-start">
             <p>{{ article.content }}</p>
@@ -108,7 +109,8 @@ export default {
 }
 
 .article-detail-user-info {
-  max-height: 220px;
+  box-sizing: border-box;
+  max-height: 250px;
   padding: 1rem;
   border-style: dashed;
   border-radius: 1rem;
@@ -131,7 +133,11 @@ export default {
 }
 
 .article-detail-user-info-created {
-  margin-top: 20px;
+  margin-top: 10px;
+  text-align: end;
+}
+.article-detail-user-info-updated {
+  margin-bottom: 5px;
   text-align: end;
 }
 
