@@ -23,5 +23,7 @@ export default {
 </script>
 
 <style>
-
+.account-error-list {
+  color: black;
+}
 </style>

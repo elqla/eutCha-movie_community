@@ -39,7 +39,8 @@ export default {
       return this.currentUser.username
     },
     greetingText() {
-      return this.username + '님 안녕하세요!'
+      if (this.isLoggedIn) return this.username + '님 안녕하세요!'
+      return ''
     },
     isStaff() {
       if (this.currentUser.username === 'admin') return true
