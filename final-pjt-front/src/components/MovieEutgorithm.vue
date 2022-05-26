@@ -7,6 +7,7 @@
         :key="movie.id"
         :movie="movie"
         category="eut"
+        class="movieItem"
       ></movie-item>
     </div>
   </div>
@@ -28,5 +29,6 @@ export default {
 </script>
 
 <style>
-
+.movieItem{
+}
 </style>

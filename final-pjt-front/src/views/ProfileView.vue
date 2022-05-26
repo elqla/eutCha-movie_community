@@ -5,13 +5,14 @@
       <p class="profileName">{{ profile.nickname || profile.username }}</p>
       <p class="Genre">
         <span v-if="ifNotGenre">LIKE GENRE:
-          <router-link to="/movies" class="notlikemovie" >아직 좋아하는 영화가 없어요 !</router-link> 
+          <router-link to="/movies" class="notlikemovie" >아직 좋아하는 영화가 없어요 ! 🖱️</router-link>
         </span>
         <span v-if="!ifNotGenre">LIKE GENRE:
           {{ifGenres}}
         </span>
       </p>
     </div>
+
 
     <div class="articleList">
       <profile-article-list></profile-article-list>
@@ -64,8 +65,6 @@ export default {
 
 <style scope>
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Roboto:ital,wght@0,300;1,300&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Roboto:ital,wght@0,300;1,300&family=Sunflower&display=swap');
-  font-family: 'Sunflower', sans-serif; */
 
 .profile{
   display: flex;
@@ -94,6 +93,7 @@ export default {
 .notlikemovie{
   text-decoration: none;
   color: #bb0083;
+
 }
 .articleList{
   margin-top:50px;

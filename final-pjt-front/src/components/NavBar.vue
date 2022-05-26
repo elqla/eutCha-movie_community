@@ -59,8 +59,10 @@ export default {
 .logo {
   position: fixed;
   font-size: 30px;
-  top: 8px;
-  text-shadow: 2px 2px 0px #1565C0, 3px 3px 0px #42A5F5, 2px 2px 0px #E3F2FD;
+  top: 5px;
+  color: rgb(255, 255, 255) !important;
+  
+  /* text-shadow: 2px 1px 0px #1565C0, 2px 1px 0px #42A5F5, 2px 2px 0px #E3F2FD; */
 }
 
 .welcome {
@@ -68,7 +70,6 @@ export default {
   font-size: 20px;
   left: 50%;
   transform: translate(-50%);
-  text-shadow: 2px 2px 0px #1565C0, 3px 3px 0px #42A5F5, 2px 2px 0px #E3F2FD;
 }
 
 .navbar-community {

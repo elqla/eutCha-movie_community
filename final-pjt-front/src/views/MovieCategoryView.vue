@@ -33,12 +33,13 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Roboto:ital,wght@0,300;1,300&display=swap');
 .category {
   margin-top: 100px;
 }
 .category-title {
   margin: 2rem;
   font-family: 'Segoe UI';
-  text-shadow: 1px 1px 0px #1565C0, 2px 2px 0px #42A5F5, 1px 3px 0px #E3F2FD;
+  font-family: 'Do Hyeon', sans-serif;
 }
 </style>

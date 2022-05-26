@@ -97,7 +97,7 @@ methds:{
 <style>
 .articleItems{
   display: flex;
-  flex-flow: row nowrap;  //이건 적용이 
+  flex-flow: row nowrap;  //이건 적용이 안된다! container여서 그런가 ?
 }
 ```
 

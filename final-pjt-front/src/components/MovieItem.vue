@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-center col-sm-12 col-md-6 col-xl-4 col-xxl-3"
+  <div class="oneCard d-flex justify-content-center col-sm-12 col-md-6 col-xl-4 col-xxl-3"
     :class="container"
     @mouseover="flipFront"
     @mouseout="flipBack"
@@ -8,12 +8,12 @@
       overlay
       :img-src="poster"
       img-alt="Image"
-      style="height: 500px; max-width: 20rem; position: absolute;"
+      style="position:absolute;"
       class="mb-2 front"
     ></b-card>
     <router-link :to="{ name: 'movieDetail', params: { movieId } }" class="text-decoration-none">
       <b-card
-        style="height: 500px; max-width: 20rem;"
+        style=""
         class="mb-2 back"
         text-variant="black"
       >
@@ -67,19 +67,33 @@ export default {
 </script>
 
 <style>
+:root{
+  --cardheight:400px; 
+  --cardwidth: 270px;
+}
+.oneCard{
+  padding-bottom: 20px;
+}
+
 .front{
   overflow: hidden;
-  width: 20rem;
+  height: var(--cardheight);
+  width: var(--cardwidth);
+  background-color: black !important;
 }
 .front img{
   position: absolute;
   left: 0;
-  height: 500px;
+  height: var(--cardheight);
+  width: var(--cardwidth);
 }
 .back{
+  height: var(--cardheight);
+  width: var(--cardwidth);
   background-color: rgb(46, 46, 46) !important;
   transform: rotateY(90deg);
   font-family: 'Gowun Dodum', sans-serif;
+
 }
 .cardRotate .front{
   opacity: 1;
@@ -115,18 +129,19 @@ export default {
 
 .card-title {
   font-size: 30px;
-  padding: 1rem;
+  /* padding: 1rem; */
   color: rgb(255, 245, 225);
-  word-break: keep-all;
-  }
+  /* word-break: keep-all; */
+}
 
 .movie-text{
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 10;
+  -webkit-line-clamp: 5;
   overflow: hidden;
   color: rgb(255, 245, 225);
-  text-align: start;
+  /* text-align: start; */
+  padding-top: 20px;
 }
 
 .movie-genre {

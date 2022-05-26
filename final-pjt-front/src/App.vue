@@ -23,8 +23,10 @@
 </script>
 
 <style>
+
 :root{
   background:black;
+
 }
 #app {
   background-color: black;
