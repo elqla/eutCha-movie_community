@@ -7,7 +7,7 @@
         >
     <h1 class="signup-title">signup</h1>
     <account-error-list v-if="authError"></account-error-list>
-      <b-form @submit.prevent="signup(credentials)" align="left">
+      <b-form @submit.prevent="newFormdata" align="left" enctype="multipart/form-data">
         <b-form-group label-for="username" label="ID">
           <b-form-input v-model="credentials.username" id="username" placeholder="ID를 입력하세요" type="text" required>
           </b-form-input>
@@ -57,14 +57,23 @@
           password2 : '',
           nickname : '',
           picture: null,
-        }
+        },
       }
     },
     computed: {
       ...mapGetters(['authError']),
     },
     methods: {
-      ...mapActions(['signup'])
+      ...mapActions(['signup']),
+      newFormdata() {
+        const formdata = new FormData()
+        formdata.append('username', this.credentials.username)
+        formdata.append('password1', this.credentials.password1)
+        formdata.append('password2', this.credentials.password2)
+        formdata.append('nickname', this.credentials.nickname)
+        formdata.append('picture', this.credentials.picture)
+        this.signup(formdata)
+      }
     },
   }
 </script>

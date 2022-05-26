@@ -53,4 +53,58 @@ accounts에서 프로필에 관련된 응답을 할 수 있도록 대부분 수�
 
 
 
-되라
+### 05.25
+
+- signup이 안된다...
+  - nickname과 picture는 allauth로 업로드를 못하나?
+- 해결방안
+  - django에서 CustomRegisterSerializer와 CustomAccountAdapter를 만들어주고, settings.py에 등록해주면 된다.
+
+```python
+# accounts/adapters.py
+
+from allauth.account.adapter import DefaultAccountAdapter
+
+
+class CustomAccountAdapter(DefaultAccountAdapter):
+
+    def save_user(self, request, user, form, commit=True):
+        data = form.cleaned_data
+        user = super().save_user(request, user, form, False)
+        nickname = data.get('nickname')
+        if nickname:
+            user.nickname = nickname
+        picture = data.get('picture')
+        if picture:
+            user.picture = picture
+        user.save()
+        return user
+```
+
+```python
+# accounts/serializers.py
+
+from dj_rest_auth.registration.serializers import RegisterSerializer
+
+
+class CustomRegisterSerializer(RegisterSerializer):
+    nickname = serializers.CharField(max_length=10)
+    picture = serializers.ImageField(use_url=True)
+
+    def get_cleaned_data(self):
+        data_dict = super().get_cleaned_data()
+        data_dict['nickname'] = self.validated_data.get('nickname', '')
+        data_dict['picture'] = self.validated_data.get('picture', '')
+        return data_dict
+```
+
+```python
+# settings.py
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+}
+
+ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'
+```
+

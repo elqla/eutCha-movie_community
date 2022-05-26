@@ -10,7 +10,7 @@ from dj_rest_auth.registration.serializers import RegisterSerializer
 
 class CustomRegisterSerializer(RegisterSerializer):
     nickname = serializers.CharField(max_length=10)
-    picture = serializers.ImageField()
+    picture = serializers.ImageField(use_url=True)
 
     def get_cleaned_data(self):
         data_dict = super().get_cleaned_data()

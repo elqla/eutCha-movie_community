@@ -6,7 +6,7 @@
     </router-link>
     <ul v-for="movie in movies" :key="movie.id">
       <router-link :to="{ name: 'adminEditView', params: { movieId: movie.id } }">
-        <li>{{ movie.title }}</li>
+        <li class="">{{ movie.title }}</li>
       </router-link>
     </ul>
   </div>
